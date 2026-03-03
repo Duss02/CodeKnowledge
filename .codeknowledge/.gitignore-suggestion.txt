@@ -1,0 +1,6 @@
+# Add to your .gitignore if you don't want to commit the graph:
+# .codeknowledge/graph.json
+# .codeknowledge/summaries.json
+#
+# RECOMMENDED: Commit SUMMARY.md files for documentation:
+# (do NOT gitignore .codeknowledge/**/SUMMARY.md)

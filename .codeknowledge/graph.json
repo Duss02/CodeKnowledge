@@ -1,0 +1,1983 @@
+{
+  "version": "1",
+  "generated_at": "2026-03-03T15:30:44.409Z",
+  "nodes": [
+    {
+      "id": "ck.config.js",
+      "type": "file",
+      "language": "javascript",
+      "path": "ck.config.js",
+      "name": "ck.config.js",
+      "lines": [
+        1,
+        28
+      ],
+      "hash": "40bd1e6debaa8699b9f67cd4f3cdf1bd015c7cf8ed97c24d08fbb168444b1225",
+      "exports": [],
+      "stale": false,
+      "last_indexed": "2026-03-03T15:30:44.408Z"
+    },
+    {
+      "id": "src/cli/commands/index.ts",
+      "type": "file",
+      "language": "typescript",
+      "path": "src/cli/commands/index.ts",
+      "name": "index.ts",
+      "lines": [
+        1,
+        160
+      ],
+      "hash": "0a98abb1558b673907af8e4e0794aed71b12bd101e6f48fa046f3f5af474b6f8",
+      "exports": [
+        "runIndex"
+      ],
+      "stale": false,
+      "last_indexed": "2026-03-03T15:30:44.408Z"
+    },
+    {
+      "id": "src/cli/commands/index.ts#collectFiles",
+      "type": "function",
+      "language": "typescript",
+      "path": "src/cli/commands/index.ts",
+      "name": "collectFiles",
+      "lines": [
+        21,
+        65
+      ],
+      "hash": "ebabfbdf1431e1adb3b95de01d32305e4b571b68535cedaa193e0c1ea53c3697",
+      "exports": [],
+      "stale": false,
+      "last_indexed": "2026-03-03T15:30:44.408Z"
+    },
+    {
+      "id": "src/cli/commands/index.ts#runIndex",
+      "type": "function",
+      "language": "typescript",
+      "path": "src/cli/commands/index.ts",
+      "name": "runIndex",
+      "lines": [
+        67,
+        159
+      ],
+      "hash": "b0a666522a5f14a399ced019286949c68f4021291e81270131e2faba70290f51",
+      "exports": [],
+      "stale": false,
+      "last_indexed": "2026-03-03T15:30:44.408Z"
+    },
+    {
+      "id": "src/cli/commands/init.ts",
+      "type": "file",
+      "language": "typescript",
+      "path": "src/cli/commands/init.ts",
+      "name": "init.ts",
+      "lines": [
+        1,
+        74
+      ],
+      "hash": "55e728314260f1888988b907d20f22d422220841ace56a304fc61ccad3b6d0b7",
+      "exports": [
+        "runInit"
+      ],
+      "stale": false,
+      "last_indexed": "2026-03-03T15:30:44.408Z"
+    },
+    {
+      "id": "src/cli/commands/init.ts#runInit",
+      "type": "function",
+      "language": "typescript",
+      "path": "src/cli/commands/init.ts",
+      "name": "runInit",
+      "lines": [
+        6,
+        73
+      ],
+      "hash": "669b526b9a12fe286101711125f4dc951e1b8d7c9d314341cff1485817e11a8c",
+      "exports": [],
+      "stale": false,
+      "last_indexed": "2026-03-03T15:30:44.408Z"
+    },
+    {
+      "id": "src/cli/commands/query.ts",
+      "type": "file",
+      "language": "typescript",
+      "path": "src/cli/commands/query.ts",
+      "name": "query.ts",
+      "lines": [
+        1,
+        119
+      ],
+      "hash": "3baf2faa5abd570366dfd3717dffbb1a5d642dc074d06d84a465a2916a72fdc8",
+      "exports": [
+        "runQuery"
+      ],
+      "stale": false,
+      "last_indexed": "2026-03-03T15:30:44.408Z"
+    },
+    {
+      "id": "src/cli/commands/query.ts#runQuery",
+      "type": "function",
+      "language": "typescript",
+      "path": "src/cli/commands/query.ts",
+      "name": "runQuery",
+      "lines": [
+        8,
+        76
+      ],
+      "hash": "1a92098c0ec1544f6a8a5875ef03bc7dcf362cbcf03aa68eae7d9642b22fbc76",
+      "exports": [],
+      "stale": false,
+      "last_indexed": "2026-03-03T15:30:44.408Z"
+    },
+    {
+      "id": "src/cli/commands/query.ts#llmQuery",
+      "type": "function",
+      "language": "typescript",
+      "path": "src/cli/commands/query.ts",
+      "name": "llmQuery",
+      "lines": [
+        78,
+        118
+      ],
+      "hash": "5fde43993391ed543516a05b7698faf2f3dbb1eb11c2a27831f6833a3d425457",
+      "exports": [],
+      "stale": false,
+      "last_indexed": "2026-03-03T15:30:44.408Z"
+    },
+    {
+      "id": "src/cli/commands/status.ts",
+      "type": "file",
+      "language": "typescript",
+      "path": "src/cli/commands/status.ts",
+      "name": "status.ts",
+      "lines": [
+        1,
+        69
+      ],
+      "hash": "3ff02ce0cc278c41d3283ad916294567feaf7ba16c9e91436df1696fe6b9b6fe",
+      "exports": [
+        "runStatus"
+      ],
+      "stale": false,
+      "last_indexed": "2026-03-03T15:30:44.408Z"
+    },
+    {
+      "id": "src/cli/commands/status.ts#runStatus",
+      "type": "function",
+      "language": "typescript",
+      "path": "src/cli/commands/status.ts",
+      "name": "runStatus",
+      "lines": [
+        8,
+        68
+      ],
+      "hash": "cddb2273ef10c2e1dea123a41d1b2c0b5fbbede994e725b7013ae899348a803f",
+      "exports": [],
+      "stale": false,
+      "last_indexed": "2026-03-03T15:30:44.408Z"
+    },
+    {
+      "id": "src/cli/commands/watch.ts",
+      "type": "file",
+      "language": "typescript",
+      "path": "src/cli/commands/watch.ts",
+      "name": "watch.ts",
+      "lines": [
+        1,
+        37
+      ],
+      "hash": "f4c1cf3e5e9758ef5f62ce20504554a23df630523071fa9e69002ea8ad70fe65",
+      "exports": [
+        "runWatch"
+      ],
+      "stale": false,
+      "last_indexed": "2026-03-03T15:30:44.408Z"
+    },
+    {
+      "id": "src/cli/commands/watch.ts#runWatch",
+      "type": "function",
+      "language": "typescript",
+      "path": "src/cli/commands/watch.ts",
+      "name": "runWatch",
+      "lines": [
+        7,
+        36
+      ],
+      "hash": "8f51460d6f722f5185a6754c54408c61e3c15c8e71493b6769993260261179fe",
+      "exports": [],
+      "stale": false,
+      "last_indexed": "2026-03-03T15:30:44.408Z"
+    },
+    {
+      "id": "src/cli/index.ts",
+      "type": "file",
+      "language": "typescript",
+      "path": "src/cli/index.ts",
+      "name": "index.ts",
+      "lines": [
+        1,
+        78
+      ],
+      "hash": "8006d86a0f7277d3bc1d5d0f69eef90c34fe3caa7d9fb08836a48478caad419a",
+      "exports": [],
+      "stale": false,
+      "last_indexed": "2026-03-03T15:30:44.408Z"
+    },
+    {
+      "id": "src/core/config/index.ts",
+      "type": "file",
+      "language": "typescript",
+      "path": "src/core/config/index.ts",
+      "name": "index.ts",
+      "lines": [
+        1,
+        80
+      ],
+      "hash": "be6e303d21e1a7204c623c142113cc66bc6e52ccacb5b7113c699df84f34408a",
+      "exports": [
+        "DEFAULT_CONFIG",
+        "loadConfig",
+        "saveConfig"
+      ],
+      "stale": false,
+      "last_indexed": "2026-03-03T15:30:44.408Z"
+    },
+    {
+      "id": "src/core/config/index.ts#loadConfig",
+      "type": "function",
+      "language": "typescript",
+      "path": "src/core/config/index.ts",
+      "name": "loadConfig",
+      "lines": [
+        54,
+        73
+      ],
+      "hash": "9dd58cc0b4bcfd4c364f427dce439798d0cd98f0afd7fd36f48f49d126b397aa",
+      "exports": [],
+      "stale": false,
+      "last_indexed": "2026-03-03T15:30:44.408Z"
+    },
+    {
+      "id": "src/core/config/index.ts#saveConfig",
+      "type": "function",
+      "language": "typescript",
+      "path": "src/core/config/index.ts",
+      "name": "saveConfig",
+      "lines": [
+        75,
+        79
+      ],
+      "hash": "5ea91ccbfe6b9e0620b85f1fcd1c0df9294971025b3ccdc721bb042f1b79f8f6",
+      "exports": [],
+      "stale": false,
+      "last_indexed": "2026-03-03T15:30:44.408Z"
+    },
+    {
+      "id": "src/core/graph/builder.ts",
+      "type": "file",
+      "language": "typescript",
+      "path": "src/core/graph/builder.ts",
+      "name": "builder.ts",
+      "lines": [
+        1,
+        56
+      ],
+      "hash": "0c074d1407feb29c85b3a2d58ebe6576fc8f2661e549e4da9a17217ca1b06f5b",
+      "exports": [
+        "buildGraph",
+        "mergeIntoGraph"
+      ],
+      "stale": false,
+      "last_indexed": "2026-03-03T15:30:44.408Z"
+    },
+    {
+      "id": "src/core/graph/builder.ts#buildGraph",
+      "type": "function",
+      "language": "typescript",
+      "path": "src/core/graph/builder.ts",
+      "name": "buildGraph",
+      "lines": [
+        4,
+        29
+      ],
+      "hash": "df2b64c90388ebb12dbda93c6b3fc275fd4db57783250b6e5f7252ea4c170e22",
+      "exports": [],
+      "stale": false,
+      "last_indexed": "2026-03-03T15:30:44.408Z"
+    },
+    {
+      "id": "src/core/graph/builder.ts#mergeIntoGraph",
+      "type": "function",
+      "language": "typescript",
+      "path": "src/core/graph/builder.ts",
+      "name": "mergeIntoGraph",
+      "lines": [
+        31,
+        55
+      ],
+      "hash": "45b84fecbaf9ba2bf0409fe5722df08d3bf7e975ff660ec01c358d215ad2e316",
+      "exports": [],
+      "stale": false,
+      "last_indexed": "2026-03-03T15:30:44.408Z"
+    },
+    {
+      "id": "src/core/graph/index.ts",
+      "type": "file",
+      "language": "typescript",
+      "path": "src/core/graph/index.ts",
+      "name": "index.ts",
+      "lines": [
+        1,
+        182
+      ],
+      "hash": "31c071b78ecd92c9e86685c2add5c806bcdfa453fd5dfaea5034e2d37df5d226",
+      "exports": [
+        "CodeGraph"
+      ],
+      "stale": false,
+      "last_indexed": "2026-03-03T15:30:44.408Z"
+    },
+    {
+      "id": "src/core/graph/index.ts#CodeGraph",
+      "type": "class",
+      "language": "typescript",
+      "path": "src/core/graph/index.ts",
+      "name": "CodeGraph",
+      "lines": [
+        13,
+        181
+      ],
+      "hash": "c1a5a1cc0277994567cc04db43ca03dfaeebbf98cee396303c3f8f00f6cffbf2",
+      "exports": [
+        "graph",
+        "addNode",
+        "addEdge",
+        "getNode",
+        "updateNode",
+        "hasNode",
+        "removeNode",
+        "nodes",
+        "edges",
+        "nodeCount",
+        "edgeCount",
+        "predecessors",
+        "successors",
+        "search",
+        "transitiveSuccessors",
+        "transitivePredecessors",
+        "entryPoints",
+        "markStale",
+        "staleNodes",
+        "getRawGraph"
+      ],
+      "stale": false,
+      "last_indexed": "2026-03-03T15:30:44.408Z"
+    },
+    {
+      "id": "src/core/graph/query.ts",
+      "type": "file",
+      "language": "typescript",
+      "path": "src/core/graph/query.ts",
+      "name": "query.ts",
+      "lines": [
+        1,
+        110
+      ],
+      "hash": "d61f0bce7c02e24fdf3a78e2f998aead1f79f5f7f4ab94f2fd4b889686a110eb",
+      "exports": [
+        "queryNode",
+        "findUsages",
+        "computeImpact",
+        "getEntryPoints",
+        "getOverview"
+      ],
+      "stale": false,
+      "last_indexed": "2026-03-03T15:30:44.408Z"
+    },
+    {
+      "id": "src/core/graph/query.ts#queryNode",
+      "type": "function",
+      "language": "typescript",
+      "path": "src/core/graph/query.ts",
+      "name": "queryNode",
+      "lines": [
+        14,
+        35
+      ],
+      "hash": "4287fa2c3ab5761bb203f0a90d08381df5f8e0fc781c775c5703704f5f42f35e",
+      "exports": [],
+      "stale": false,
+      "last_indexed": "2026-03-03T15:30:44.408Z"
+    },
+    {
+      "id": "src/core/graph/query.ts#findUsages",
+      "type": "function",
+      "language": "typescript",
+      "path": "src/core/graph/query.ts",
+      "name": "findUsages",
+      "lines": [
+        37,
+        46
+      ],
+      "hash": "1aa9f825b99089e4d42474398c650970bd2456451e671609a898c3efef48f11c",
+      "exports": [],
+      "stale": false,
+      "last_indexed": "2026-03-03T15:30:44.408Z"
+    },
+    {
+      "id": "src/core/graph/query.ts#computeImpact",
+      "type": "function",
+      "language": "typescript",
+      "path": "src/core/graph/query.ts",
+      "name": "computeImpact",
+      "lines": [
+        48,
+        74
+      ],
+      "hash": "7880c246e4c1826b85814018289615cf66a553adaa8d9f4fd9cea3af3a2a929f",
+      "exports": [],
+      "stale": false,
+      "last_indexed": "2026-03-03T15:30:44.408Z"
+    },
+    {
+      "id": "src/core/graph/query.ts#getEntryPoints",
+      "type": "function",
+      "language": "typescript",
+      "path": "src/core/graph/query.ts",
+      "name": "getEntryPoints",
+      "lines": [
+        76,
+        78
+      ],
+      "hash": "46f8d893186b9bbedbd93531278c72cf5d5e1fc27b58184541ff9a49ba69c416",
+      "exports": [],
+      "stale": false,
+      "last_indexed": "2026-03-03T15:30:44.408Z"
+    },
+    {
+      "id": "src/core/graph/query.ts#getOverview",
+      "type": "function",
+      "language": "typescript",
+      "path": "src/core/graph/query.ts",
+      "name": "getOverview",
+      "lines": [
+        80,
+        109
+      ],
+      "hash": "d8281db2c6ddb2539fc0191217ff90fdab4f5216c4bd8af74e39e32411970271",
+      "exports": [],
+      "stale": false,
+      "last_indexed": "2026-03-03T15:30:44.408Z"
+    },
+    {
+      "id": "src/core/graph/serializer.ts",
+      "type": "file",
+      "language": "typescript",
+      "path": "src/core/graph/serializer.ts",
+      "name": "serializer.ts",
+      "lines": [
+        1,
+        56
+      ],
+      "hash": "996bd48f0f9e1bba54e255ed7e3c3dfa4288700bc8f1d39dd7c1932c4b2677c9",
+      "exports": [
+        "saveGraph",
+        "loadGraph",
+        "graphExists"
+      ],
+      "stale": false,
+      "last_indexed": "2026-03-03T15:30:44.408Z"
+    },
+    {
+      "id": "src/core/graph/serializer.ts#saveGraph",
+      "type": "function",
+      "language": "typescript",
+      "path": "src/core/graph/serializer.ts",
+      "name": "saveGraph",
+      "lines": [
+        12,
+        24
+      ],
+      "hash": "421de29193a60ef3976d957dbddfefd331a4bb6a3ee3b46cec8b12f0823d5540",
+      "exports": [],
+      "stale": false,
+      "last_indexed": "2026-03-03T15:30:44.408Z"
+    },
+    {
+      "id": "src/core/graph/serializer.ts#loadGraph",
+      "type": "function",
+      "language": "typescript",
+      "path": "src/core/graph/serializer.ts",
+      "name": "loadGraph",
+      "lines": [
+        26,
+        46
+      ],
+      "hash": "b798f927cebc42638f79e08da7167bdd1c4a8c3db8db68e22b05805e1f32c93d",
+      "exports": [],
+      "stale": false,
+      "last_indexed": "2026-03-03T15:30:44.408Z"
+    },
+    {
+      "id": "src/core/graph/serializer.ts#graphExists",
+      "type": "function",
+      "language": "typescript",
+      "path": "src/core/graph/serializer.ts",
+      "name": "graphExists",
+      "lines": [
+        48,
+        55
+      ],
+      "hash": "790fc092f04bd3a37d0bbad704fd1cfb4e6e1cb43082801c641056e449d4d2f1",
+      "exports": [],
+      "stale": false,
+      "last_indexed": "2026-03-03T15:30:44.408Z"
+    },
+    {
+      "id": "src/core/parser/go.ts",
+      "type": "file",
+      "language": "typescript",
+      "path": "src/core/parser/go.ts",
+      "name": "go.ts",
+      "lines": [
+        1,
+        154
+      ],
+      "hash": "e2edd1c29ab2770e1b84e5261cd11c55746f64a5db390844b7e7622400efdff9",
+      "exports": [
+        "parseGo"
+      ],
+      "stale": false,
+      "last_indexed": "2026-03-03T15:30:44.408Z"
+    },
+    {
+      "id": "src/core/parser/go.ts#makeFileId",
+      "type": "function",
+      "language": "typescript",
+      "path": "src/core/parser/go.ts",
+      "name": "makeFileId",
+      "lines": [
+        7,
+        9
+      ],
+      "hash": "c7f5c7fba68daf96f9c2ae3852e8bac42f7c1d349413c47f0c80e7e6d843c812",
+      "exports": [],
+      "stale": false,
+      "last_indexed": "2026-03-03T15:30:44.408Z"
+    },
+    {
+      "id": "src/core/parser/go.ts#visitNode",
+      "type": "function",
+      "language": "typescript",
+      "path": "src/core/parser/go.ts",
+      "name": "visitNode",
+      "lines": [
+        22,
+        43
+      ],
+      "hash": "8e867da5e0cdd01f4b05191dc119d4c84c419ddf047fcc370f22ee4ef8540b78",
+      "exports": [],
+      "stale": false,
+      "last_indexed": "2026-03-03T15:30:44.408Z"
+    },
+    {
+      "id": "src/core/parser/go.ts#handleImport",
+      "type": "function",
+      "language": "typescript",
+      "path": "src/core/parser/go.ts",
+      "name": "handleImport",
+      "lines": [
+        45,
+        66
+      ],
+      "hash": "0adc9ce315425ab7ed939aa7fb7292fcabc3d6abe5692b21bb742904d08dca4f",
+      "exports": [],
+      "stale": false,
+      "last_indexed": "2026-03-03T15:30:44.408Z"
+    },
+    {
+      "id": "src/core/parser/go.ts#handleTypeDecl",
+      "type": "function",
+      "language": "typescript",
+      "path": "src/core/parser/go.ts",
+      "name": "handleTypeDecl",
+      "lines": [
+        68,
+        91
+      ],
+      "hash": "266a423d322ed621bde97921d804e3fa25f81a6b3959ea331de850f023558c6d",
+      "exports": [],
+      "stale": false,
+      "last_indexed": "2026-03-03T15:30:44.408Z"
+    },
+    {
+      "id": "src/core/parser/go.ts#handleFunction",
+      "type": "function",
+      "language": "typescript",
+      "path": "src/core/parser/go.ts",
+      "name": "handleFunction",
+      "lines": [
+        93,
+        113
+      ],
+      "hash": "235555a8003f17913e55affd6d579d7c284b7b442777d597af191fea99941869",
+      "exports": [],
+      "stale": false,
+      "last_indexed": "2026-03-03T15:30:44.408Z"
+    },
+    {
+      "id": "src/core/parser/go.ts#parseGo",
+      "type": "function",
+      "language": "typescript",
+      "path": "src/core/parser/go.ts",
+      "name": "parseGo",
+      "lines": [
+        115,
+        153
+      ],
+      "hash": "dac8d70eb7ada9e7db0d6ebdaaa157d539fed34bc24657d7b69f0e13a58cdbbe",
+      "exports": [],
+      "stale": false,
+      "last_indexed": "2026-03-03T15:30:44.408Z"
+    },
+    {
+      "id": "src/core/parser/index.ts",
+      "type": "file",
+      "language": "typescript",
+      "path": "src/core/parser/index.ts",
+      "name": "index.ts",
+      "lines": [
+        1,
+        42
+      ],
+      "hash": "53831b59a01a7b2d6bea4f004a8235f9d37beea1f417e71dd5942cf89d2cf26b",
+      "exports": [
+        "parseFile"
+      ],
+      "stale": false,
+      "last_indexed": "2026-03-03T15:30:44.408Z"
+    },
+    {
+      "id": "src/core/parser/index.ts#parseFile",
+      "type": "function",
+      "language": "typescript",
+      "path": "src/core/parser/index.ts",
+      "name": "parseFile",
+      "lines": [
+        10,
+        41
+      ],
+      "hash": "526760d8d6d45b4446b25a26ad60006e0a1e1174b572e6ebf4677ea286ce10ba",
+      "exports": [],
+      "stale": false,
+      "last_indexed": "2026-03-03T15:30:44.408Z"
+    },
+    {
+      "id": "src/core/parser/python.ts",
+      "type": "file",
+      "language": "typescript",
+      "path": "src/core/parser/python.ts",
+      "name": "python.ts",
+      "lines": [
+        1,
+        193
+      ],
+      "hash": "4f9bcf07c5a8f5a5c0f5c8040d9bf33bc0962cfadc0546bf4129c621092d3a62",
+      "exports": [
+        "parsePython"
+      ],
+      "stale": false,
+      "last_indexed": "2026-03-03T15:30:44.408Z"
+    },
+    {
+      "id": "src/core/parser/python.ts#makeFileId",
+      "type": "function",
+      "language": "typescript",
+      "path": "src/core/parser/python.ts",
+      "name": "makeFileId",
+      "lines": [
+        7,
+        9
+      ],
+      "hash": "c7f5c7fba68daf96f9c2ae3852e8bac42f7c1d349413c47f0c80e7e6d843c812",
+      "exports": [],
+      "stale": false,
+      "last_indexed": "2026-03-03T15:30:44.408Z"
+    },
+    {
+      "id": "src/core/parser/python.ts#resolveImportTarget",
+      "type": "function",
+      "language": "typescript",
+      "path": "src/core/parser/python.ts",
+      "name": "resolveImportTarget",
+      "lines": [
+        11,
+        22
+      ],
+      "hash": "7d6c505c727c36668b8b79c33def9926a504050b2464fd0727dd7e80d8b8cc87",
+      "exports": [],
+      "stale": false,
+      "last_indexed": "2026-03-03T15:30:44.408Z"
+    },
+    {
+      "id": "src/core/parser/python.ts#visitNode",
+      "type": "function",
+      "language": "typescript",
+      "path": "src/core/parser/python.ts",
+      "name": "visitNode",
+      "lines": [
+        35,
+        63
+      ],
+      "hash": "3ee2dad5e7491351d07483da1df6947f6f99d7a6c8f0b4184b53c6a164fa7be6",
+      "exports": [],
+      "stale": false,
+      "last_indexed": "2026-03-03T15:30:44.408Z"
+    },
+    {
+      "id": "src/core/parser/python.ts#handleImport",
+      "type": "function",
+      "language": "typescript",
+      "path": "src/core/parser/python.ts",
+      "name": "handleImport",
+      "lines": [
+        65,
+        80
+      ],
+      "hash": "042a7cfedc135b3c17550a312eef4308e63f51e79220fb605128de1c7b351d57",
+      "exports": [],
+      "stale": false,
+      "last_indexed": "2026-03-03T15:30:44.408Z"
+    },
+    {
+      "id": "src/core/parser/python.ts#handleClass",
+      "type": "function",
+      "language": "typescript",
+      "path": "src/core/parser/python.ts",
+      "name": "handleClass",
+      "lines": [
+        82,
+        130
+      ],
+      "hash": "5624422eb59dee3388919085dcb18b00cbae24133c84f80c9331d7435a9dfaf2",
+      "exports": [],
+      "stale": false,
+      "last_indexed": "2026-03-03T15:30:44.408Z"
+    },
+    {
+      "id": "src/core/parser/python.ts#handleFunction",
+      "type": "function",
+      "language": "typescript",
+      "path": "src/core/parser/python.ts",
+      "name": "handleFunction",
+      "lines": [
+        132,
+        152
+      ],
+      "hash": "181456d26ed4532e4349ec99b6748850329ba9f0b5c54fac3c51b04f35adb462",
+      "exports": [],
+      "stale": false,
+      "last_indexed": "2026-03-03T15:30:44.408Z"
+    },
+    {
+      "id": "src/core/parser/python.ts#parsePython",
+      "type": "function",
+      "language": "typescript",
+      "path": "src/core/parser/python.ts",
+      "name": "parsePython",
+      "lines": [
+        154,
+        192
+      ],
+      "hash": "6aac1dc9cc2d0367cb7e04b5332bdb23d2424c152dc63cb13c1782cad4ef1270",
+      "exports": [],
+      "stale": false,
+      "last_indexed": "2026-03-03T15:30:44.408Z"
+    },
+    {
+      "id": "src/core/parser/types.ts",
+      "type": "file",
+      "language": "typescript",
+      "path": "src/core/parser/types.ts",
+      "name": "types.ts",
+      "lines": [
+        1,
+        28
+      ],
+      "hash": "1264b7604ede1119943f2794ace25224ab8dcacc16169aff55024c35e90d52c2",
+      "exports": [],
+      "stale": false,
+      "last_indexed": "2026-03-03T15:30:44.408Z"
+    },
+    {
+      "id": "src/core/parser/typescript.ts",
+      "type": "file",
+      "language": "typescript",
+      "path": "src/core/parser/typescript.ts",
+      "name": "typescript.ts",
+      "lines": [
+        1,
+        319
+      ],
+      "hash": "8639f91aa7d11436bd804a5a27f4a7e9d95099443a2d489eec8ba8fc8df132ce",
+      "exports": [
+        "parseTypeScript"
+      ],
+      "stale": false,
+      "last_indexed": "2026-03-03T15:30:44.408Z"
+    },
+    {
+      "id": "src/core/parser/typescript.ts#makeFileId",
+      "type": "function",
+      "language": "typescript",
+      "path": "src/core/parser/typescript.ts",
+      "name": "makeFileId",
+      "lines": [
+        9,
+        11
+      ],
+      "hash": "c7f5c7fba68daf96f9c2ae3852e8bac42f7c1d349413c47f0c80e7e6d843c812",
+      "exports": [],
+      "stale": false,
+      "last_indexed": "2026-03-03T15:30:44.408Z"
+    },
+    {
+      "id": "src/core/parser/typescript.ts#extractStringValue",
+      "type": "function",
+      "language": "typescript",
+      "path": "src/core/parser/typescript.ts",
+      "name": "extractStringValue",
+      "lines": [
+        13,
+        22
+      ],
+      "hash": "fd66f3f657f8bef81f78cd48a7de6c2f0d38812b5598f53c526eda4b488cc78d",
+      "exports": [],
+      "stale": false,
+      "last_indexed": "2026-03-03T15:30:44.408Z"
+    },
+    {
+      "id": "src/core/parser/typescript.ts#resolveImportTarget",
+      "type": "function",
+      "language": "typescript",
+      "path": "src/core/parser/typescript.ts",
+      "name": "resolveImportTarget",
+      "lines": [
+        24,
+        49
+      ],
+      "hash": "e5b7e4436e7ab67e40c712e9c9d83277506ec6dcbfe1af4c41dde96fbc19ee68",
+      "exports": [],
+      "stale": false,
+      "last_indexed": "2026-03-03T15:30:44.408Z"
+    },
+    {
+      "id": "src/core/parser/typescript.ts#visitNode",
+      "type": "function",
+      "language": "typescript",
+      "path": "src/core/parser/typescript.ts",
+      "name": "visitNode",
+      "lines": [
+        63,
+        94
+      ],
+      "hash": "d930d1e7d474d1acb2a5d07728f9944ad3074fa10a5de54b651fcffa9c140574",
+      "exports": [],
+      "stale": false,
+      "last_indexed": "2026-03-03T15:30:44.408Z"
+    },
+    {
+      "id": "src/core/parser/typescript.ts#handleImport",
+      "type": "function",
+      "language": "typescript",
+      "path": "src/core/parser/typescript.ts",
+      "name": "handleImport",
+      "lines": [
+        96,
+        121
+      ],
+      "hash": "c03682eaf36459f1799f37c7dee966ab7a31802ab6cdbbfd576055639f5d09cd",
+      "exports": [],
+      "stale": false,
+      "last_indexed": "2026-03-03T15:30:44.408Z"
+    },
+    {
+      "id": "src/core/parser/typescript.ts#handleExport",
+      "type": "function",
+      "language": "typescript",
+      "path": "src/core/parser/typescript.ts",
+      "name": "handleExport",
+      "lines": [
+        123,
+        152
+      ],
+      "hash": "54ac666d4acdb1397694477eac56c44cd3388a83dc4bf12ac4e92c872b2f2480",
+      "exports": [],
+      "stale": false,
+      "last_indexed": "2026-03-03T15:30:44.408Z"
+    },
+    {
+      "id": "src/core/parser/typescript.ts#handleClass",
+      "type": "function",
+      "language": "typescript",
+      "path": "src/core/parser/typescript.ts",
+      "name": "handleClass",
+      "lines": [
+        154,
+        220
+      ],
+      "hash": "ca76b853d57191d89bf9091aa663a22585b090efa17fe9e81012c1ea1156d6cb",
+      "exports": [],
+      "stale": false,
+      "last_indexed": "2026-03-03T15:30:44.408Z"
+    },
+    {
+      "id": "src/core/parser/typescript.ts#handleFunction",
+      "type": "function",
+      "language": "typescript",
+      "path": "src/core/parser/typescript.ts",
+      "name": "handleFunction",
+      "lines": [
+        222,
+        241
+      ],
+      "hash": "63cc57b2331b4089edaf04ac5f9ce68c472cafca605c0169e0605d3caf0f54b1",
+      "exports": [],
+      "stale": false,
+      "last_indexed": "2026-03-03T15:30:44.408Z"
+    },
+    {
+      "id": "src/core/parser/typescript.ts#handleVariableDecl",
+      "type": "function",
+      "language": "typescript",
+      "path": "src/core/parser/typescript.ts",
+      "name": "handleVariableDecl",
+      "lines": [
+        243,
+        264
+      ],
+      "hash": "a086c42f5c1996b1525b9a5489176fd29535206b622d26e7b76f66f1726f1b27",
+      "exports": [],
+      "stale": false,
+      "last_indexed": "2026-03-03T15:30:44.408Z"
+    },
+    {
+      "id": "src/core/parser/typescript.ts#parseTypeScript",
+      "type": "function",
+      "language": "typescript",
+      "path": "src/core/parser/typescript.ts",
+      "name": "parseTypeScript",
+      "lines": [
+        266,
+        318
+      ],
+      "hash": "6d5fb2f78fa93a943c78c9dc8545eb59d8ea23a862953b13689b8650134a6f5a",
+      "exports": [],
+      "stale": false,
+      "last_indexed": "2026-03-03T15:30:44.408Z"
+    },
+    {
+      "id": "src/core/summarizer/cache.ts",
+      "type": "file",
+      "language": "typescript",
+      "path": "src/core/summarizer/cache.ts",
+      "name": "cache.ts",
+      "lines": [
+        1,
+        54
+      ],
+      "hash": "96bccafd300dfd98030abf023a8e74b704c7bb4467c661234a71e03457221615",
+      "exports": [
+        "loadSummaryCache",
+        "saveSummaryCache",
+        "getCached",
+        "setCached"
+      ],
+      "stale": false,
+      "last_indexed": "2026-03-03T15:30:44.408Z"
+    },
+    {
+      "id": "src/core/summarizer/cache.ts#loadSummaryCache",
+      "type": "function",
+      "language": "typescript",
+      "path": "src/core/summarizer/cache.ts",
+      "name": "loadSummaryCache",
+      "lines": [
+        13,
+        21
+      ],
+      "hash": "f7dfb5fbf53dac459888b78f5be2317c2df45026137f48bafdc6601220cf2fa5",
+      "exports": [],
+      "stale": false,
+      "last_indexed": "2026-03-03T15:30:44.408Z"
+    },
+    {
+      "id": "src/core/summarizer/cache.ts#saveSummaryCache",
+      "type": "function",
+      "language": "typescript",
+      "path": "src/core/summarizer/cache.ts",
+      "name": "saveSummaryCache",
+      "lines": [
+        23,
+        29
+      ],
+      "hash": "30cb523a4eee42e77d17d7a00f33c9a3e43ab479d998c2314c502b8b88930d51",
+      "exports": [],
+      "stale": false,
+      "last_indexed": "2026-03-03T15:30:44.408Z"
+    },
+    {
+      "id": "src/core/summarizer/cache.ts#getCached",
+      "type": "function",
+      "language": "typescript",
+      "path": "src/core/summarizer/cache.ts",
+      "name": "getCached",
+      "lines": [
+        31,
+        40
+      ],
+      "hash": "c508469c2fb4e5905e9fcd5b86e54fbcb54b93dee6cd75254a30a0d663e8d24f",
+      "exports": [],
+      "stale": false,
+      "last_indexed": "2026-03-03T15:30:44.408Z"
+    },
+    {
+      "id": "src/core/summarizer/cache.ts#setCached",
+      "type": "function",
+      "language": "typescript",
+      "path": "src/core/summarizer/cache.ts",
+      "name": "setCached",
+      "lines": [
+        42,
+        53
+      ],
+      "hash": "c080452bff50a613280dd2e68db09cc81bf0f2a2cd5850ac550e244155dd6984",
+      "exports": [],
+      "stale": false,
+      "last_indexed": "2026-03-03T15:30:44.408Z"
+    },
+    {
+      "id": "src/core/summarizer/index.ts",
+      "type": "file",
+      "language": "typescript",
+      "path": "src/core/summarizer/index.ts",
+      "name": "index.ts",
+      "lines": [
+        1,
+        107
+      ],
+      "hash": "fda0efdcfefbd4963cf0d0620eebb2f06859066ccb5ea1363df8fc509dcf5432",
+      "exports": [
+        "summarizeGraph"
+      ],
+      "stale": false,
+      "last_indexed": "2026-03-03T15:30:44.408Z"
+    },
+    {
+      "id": "src/core/summarizer/index.ts#summarizeGraph",
+      "type": "function",
+      "language": "typescript",
+      "path": "src/core/summarizer/index.ts",
+      "name": "summarizeGraph",
+      "lines": [
+        19,
+        106
+      ],
+      "hash": "cba0be620c37967ffdb69aa272286ac0d7625fd33904122001dfa69e4f8ed84d",
+      "exports": [],
+      "stale": false,
+      "last_indexed": "2026-03-03T15:30:44.408Z"
+    },
+    {
+      "id": "src/core/summarizer/llm.ts",
+      "type": "file",
+      "language": "typescript",
+      "path": "src/core/summarizer/llm.ts",
+      "name": "llm.ts",
+      "lines": [
+        1,
+        77
+      ],
+      "hash": "84b4198760e530317dbdacdec9b88b6b85374cbb0f23ed6ae462f545a9b703de",
+      "exports": [
+        "generateSummary"
+      ],
+      "stale": false,
+      "last_indexed": "2026-03-03T15:30:44.408Z"
+    },
+    {
+      "id": "src/core/summarizer/llm.ts#truncateCode",
+      "type": "function",
+      "language": "typescript",
+      "path": "src/core/summarizer/llm.ts",
+      "name": "truncateCode",
+      "lines": [
+        14,
+        18
+      ],
+      "hash": "17e9121fd6bab4c12b70ad773629d0b52df02a33f819a9b2310241659cb1ba5e",
+      "exports": [],
+      "stale": false,
+      "last_indexed": "2026-03-03T15:30:44.408Z"
+    },
+    {
+      "id": "src/core/summarizer/llm.ts#parseResponse",
+      "type": "function",
+      "language": "typescript",
+      "path": "src/core/summarizer/llm.ts",
+      "name": "parseResponse",
+      "lines": [
+        20,
+        37
+      ],
+      "hash": "56d6f041fb66df2c6a2a5daad57284074f8e0c78e095d2df7cf7c9c5951bc932",
+      "exports": [],
+      "stale": false,
+      "last_indexed": "2026-03-03T15:30:44.408Z"
+    },
+    {
+      "id": "src/core/summarizer/llm.ts#generateSummary",
+      "type": "function",
+      "language": "typescript",
+      "path": "src/core/summarizer/llm.ts",
+      "name": "generateSummary",
+      "lines": [
+        39,
+        76
+      ],
+      "hash": "55a7122f215b97508443b947ebf51e2300f793245932354c7b5dae42066f7d75",
+      "exports": [],
+      "stale": false,
+      "last_indexed": "2026-03-03T15:30:44.408Z"
+    },
+    {
+      "id": "src/core/summarizer/markdown.ts",
+      "type": "file",
+      "language": "typescript",
+      "path": "src/core/summarizer/markdown.ts",
+      "name": "markdown.ts",
+      "lines": [
+        1,
+        155
+      ],
+      "hash": "1737373dc27b994b7f4792a02e779350d684ff803d78997e1f65687b7527bfe8",
+      "exports": [
+        "generateAllMarkdown"
+      ],
+      "stale": false,
+      "last_indexed": "2026-03-03T15:30:44.408Z"
+    },
+    {
+      "id": "src/core/summarizer/markdown.ts#formatDate",
+      "type": "function",
+      "language": "typescript",
+      "path": "src/core/summarizer/markdown.ts",
+      "name": "formatDate",
+      "lines": [
+        5,
+        7
+      ],
+      "hash": "5bfce6915dd9ee60ac8723c7b55cf453f20737ca7cfd84d7e863cf9f6b265f58",
+      "exports": [],
+      "stale": false,
+      "last_indexed": "2026-03-03T15:30:44.408Z"
+    },
+    {
+      "id": "src/core/summarizer/markdown.ts#truncate",
+      "type": "function",
+      "language": "typescript",
+      "path": "src/core/summarizer/markdown.ts",
+      "name": "truncate",
+      "lines": [
+        9,
+        12
+      ],
+      "hash": "067230b94746d3ed25c372f6e8f19e0bc0ef4bdb69b5ef83e8df794e91c03c85",
+      "exports": [],
+      "stale": false,
+      "last_indexed": "2026-03-03T15:30:44.408Z"
+    },
+    {
+      "id": "src/core/summarizer/markdown.ts#getNodeTypeLabel",
+      "type": "function",
+      "language": "typescript",
+      "path": "src/core/summarizer/markdown.ts",
+      "name": "getNodeTypeLabel",
+      "lines": [
+        14,
+        22
+      ],
+      "hash": "894cce36210144e2b89702d23751ad9353289283af27a7d78508dd3a9b7c6b38",
+      "exports": [],
+      "stale": false,
+      "last_indexed": "2026-03-03T15:30:44.408Z"
+    },
+    {
+      "id": "src/core/summarizer/markdown.ts#groupByFolder",
+      "type": "function",
+      "language": "typescript",
+      "path": "src/core/summarizer/markdown.ts",
+      "name": "groupByFolder",
+      "lines": [
+        30,
+        56
+      ],
+      "hash": "e094e45ec69c52aa15bd3450f5c2bee68c10e5982d05a2cef18e8229a375c06f",
+      "exports": [],
+      "stale": false,
+      "last_indexed": "2026-03-03T15:30:44.408Z"
+    },
+    {
+      "id": "src/core/summarizer/markdown.ts#buildFolderMarkdown",
+      "type": "function",
+      "language": "typescript",
+      "path": "src/core/summarizer/markdown.ts",
+      "name": "buildFolderMarkdown",
+      "lines": [
+        58,
+        135
+      ],
+      "hash": "44c7d2d2e339faf2c507d145ef78e5d80b7713e9f424bab3c9629c11ded55e3e",
+      "exports": [],
+      "stale": false,
+      "last_indexed": "2026-03-03T15:30:44.408Z"
+    },
+    {
+      "id": "src/core/summarizer/markdown.ts#generateAllMarkdown",
+      "type": "function",
+      "language": "typescript",
+      "path": "src/core/summarizer/markdown.ts",
+      "name": "generateAllMarkdown",
+      "lines": [
+        137,
+        154
+      ],
+      "hash": "6ebb519f00eae97649b895d6ff5ea83e8a3ab321121114af07a13e7e97e34a41",
+      "exports": [],
+      "stale": false,
+      "last_indexed": "2026-03-03T15:30:44.408Z"
+    },
+    {
+      "id": "src/core/watcher/index.ts",
+      "type": "file",
+      "language": "typescript",
+      "path": "src/core/watcher/index.ts",
+      "name": "index.ts",
+      "lines": [
+        1,
+        126
+      ],
+      "hash": "4c53691b8f6d09d346929ff904f0cc7a5d1ff0dc403f9902c2db3b9cc12d4906",
+      "exports": [
+        "startWatcher"
+      ],
+      "stale": false,
+      "last_indexed": "2026-03-03T15:30:44.408Z"
+    },
+    {
+      "id": "src/core/watcher/index.ts#startWatcher",
+      "type": "function",
+      "language": "typescript",
+      "path": "src/core/watcher/index.ts",
+      "name": "startWatcher",
+      "lines": [
+        22,
+        125
+      ],
+      "hash": "9de2bc45a260ea255141c1757d34d724528ddb8723c3e073e7c104ce7a923c3b",
+      "exports": [],
+      "stale": false,
+      "last_indexed": "2026-03-03T15:30:44.408Z"
+    },
+    {
+      "id": "src/core/watcher/invalidator.ts",
+      "type": "file",
+      "language": "typescript",
+      "path": "src/core/watcher/invalidator.ts",
+      "name": "invalidator.ts",
+      "lines": [
+        1,
+        27
+      ],
+      "hash": "08f11cd94f4fbbf8e2dcb5bce916430919ed162532fb23c1cd878d16452feeee",
+      "exports": [
+        "invalidateIfChanged",
+        "markFileStale"
+      ],
+      "stale": false,
+      "last_indexed": "2026-03-03T15:30:44.408Z"
+    },
+    {
+      "id": "src/core/watcher/invalidator.ts#invalidateIfChanged",
+      "type": "function",
+      "language": "typescript",
+      "path": "src/core/watcher/invalidator.ts",
+      "name": "invalidateIfChanged",
+      "lines": [
+        9,
+        22
+      ],
+      "hash": "1b0d0ae541179292e9c8fd81a12ef294ffc7a1fa2a2bdb4e2c8a9bdd942aad57",
+      "exports": [],
+      "stale": false,
+      "last_indexed": "2026-03-03T15:30:44.408Z"
+    },
+    {
+      "id": "src/core/watcher/invalidator.ts#markFileStale",
+      "type": "function",
+      "language": "typescript",
+      "path": "src/core/watcher/invalidator.ts",
+      "name": "markFileStale",
+      "lines": [
+        24,
+        26
+      ],
+      "hash": "71c2ee36408c75b107cb8b57c3c35e5148148bc5ae32294aec269045fc71cbd3",
+      "exports": [],
+      "stale": false,
+      "last_indexed": "2026-03-03T15:30:44.408Z"
+    },
+    {
+      "id": "src/utils/hash.ts",
+      "type": "file",
+      "language": "typescript",
+      "path": "src/utils/hash.ts",
+      "name": "hash.ts",
+      "lines": [
+        1,
+        10
+      ],
+      "hash": "ab9cb25ff15026236b10cd1dd215fe79fe251c168589d40576ba00bb03b9f246",
+      "exports": [
+        "sha256",
+        "sha256File"
+      ],
+      "stale": false,
+      "last_indexed": "2026-03-03T15:30:44.408Z"
+    },
+    {
+      "id": "src/utils/hash.ts#sha256",
+      "type": "function",
+      "language": "typescript",
+      "path": "src/utils/hash.ts",
+      "name": "sha256",
+      "lines": [
+        3,
+        5
+      ],
+      "hash": "2e7c4d4992c82760c21963af783137eff41cf067aad93f5848347524b8b56607",
+      "exports": [],
+      "stale": false,
+      "last_indexed": "2026-03-03T15:30:44.408Z"
+    },
+    {
+      "id": "src/utils/hash.ts#sha256File",
+      "type": "function",
+      "language": "typescript",
+      "path": "src/utils/hash.ts",
+      "name": "sha256File",
+      "lines": [
+        7,
+        9
+      ],
+      "hash": "04a5d091d6b6c927880df830b0852c6fcb87fa48a369bc8688472f0a5b479ad4",
+      "exports": [],
+      "stale": false,
+      "last_indexed": "2026-03-03T15:30:44.408Z"
+    },
+    {
+      "id": "src/utils/language.ts",
+      "type": "file",
+      "language": "typescript",
+      "path": "src/utils/language.ts",
+      "name": "language.ts",
+      "lines": [
+        1,
+        22
+      ],
+      "hash": "4ecd86adb3c4afe1cbaace526187be8531f7a7c6edf9d81622501d1fa2ffd6eb",
+      "exports": [
+        "detectLanguage",
+        "isSupported"
+      ],
+      "stale": false,
+      "last_indexed": "2026-03-03T15:30:44.408Z"
+    },
+    {
+      "id": "src/utils/language.ts#detectLanguage",
+      "type": "function",
+      "language": "typescript",
+      "path": "src/utils/language.ts",
+      "name": "detectLanguage",
+      "lines": [
+        14,
+        17
+      ],
+      "hash": "b8a687b40b9dcaf7bc77f3eb4ec6421f4490e304fe42e264c7d8c0c1a4e387ca",
+      "exports": [],
+      "stale": false,
+      "last_indexed": "2026-03-03T15:30:44.408Z"
+    },
+    {
+      "id": "src/utils/language.ts#isSupported",
+      "type": "function",
+      "language": "typescript",
+      "path": "src/utils/language.ts",
+      "name": "isSupported",
+      "lines": [
+        19,
+        21
+      ],
+      "hash": "6336c4be10ae48e1a834210f9c3f032f7fa664d8d1bf256c128487135a4eccd4",
+      "exports": [],
+      "stale": false,
+      "last_indexed": "2026-03-03T15:30:44.408Z"
+    },
+    {
+      "id": "src/utils/logger.ts",
+      "type": "file",
+      "language": "typescript",
+      "path": "src/utils/logger.ts",
+      "name": "logger.ts",
+      "lines": [
+        1,
+        22
+      ],
+      "hash": "196d1a16dbaf6871aae1107aaa21be772ac4afcb18bb7b667855eea881072c23",
+      "exports": [
+        "logger"
+      ],
+      "stale": false,
+      "last_indexed": "2026-03-03T15:30:44.408Z"
+    },
+    {
+      "id": "src/core/config/index.js",
+      "type": "file",
+      "stale": false,
+      "last_indexed": "2026-03-03T15:30:22.988Z"
+    },
+    {
+      "id": "src/core/parser/index.js",
+      "type": "file",
+      "stale": false,
+      "last_indexed": "2026-03-03T15:30:22.989Z"
+    },
+    {
+      "id": "src/core/graph/builder.js",
+      "type": "file",
+      "stale": false,
+      "last_indexed": "2026-03-03T15:30:22.989Z"
+    },
+    {
+      "id": "src/core/graph/serializer.js",
+      "type": "file",
+      "stale": false,
+      "last_indexed": "2026-03-03T15:30:22.989Z"
+    },
+    {
+      "id": "src/core/summarizer/index.js",
+      "type": "file",
+      "stale": false,
+      "last_indexed": "2026-03-03T15:30:22.989Z"
+    },
+    {
+      "id": "src/core/summarizer/markdown.js",
+      "type": "file",
+      "stale": false,
+      "last_indexed": "2026-03-03T15:30:22.989Z"
+    },
+    {
+      "id": "src/utils/logger.js",
+      "type": "file",
+      "stale": false,
+      "last_indexed": "2026-03-03T15:30:22.989Z"
+    },
+    {
+      "id": "src/utils/language.js",
+      "type": "file",
+      "stale": false,
+      "last_indexed": "2026-03-03T15:30:22.989Z"
+    },
+    {
+      "id": "src/core/graph/query.js",
+      "type": "file",
+      "stale": false,
+      "last_indexed": "2026-03-03T15:30:22.989Z"
+    },
+    {
+      "id": "src/core/watcher/index.js",
+      "type": "file",
+      "stale": false,
+      "last_indexed": "2026-03-03T15:30:22.989Z"
+    },
+    {
+      "id": "src/cli/commands/init.js",
+      "type": "file",
+      "stale": false,
+      "last_indexed": "2026-03-03T15:30:22.989Z"
+    },
+    {
+      "id": "src/cli/commands/index.js",
+      "type": "file",
+      "stale": false,
+      "last_indexed": "2026-03-03T15:30:22.989Z"
+    },
+    {
+      "id": "src/cli/commands/query.js",
+      "type": "file",
+      "stale": false,
+      "last_indexed": "2026-03-03T15:30:22.989Z"
+    },
+    {
+      "id": "src/cli/commands/status.js",
+      "type": "file",
+      "stale": false,
+      "last_indexed": "2026-03-03T15:30:22.989Z"
+    },
+    {
+      "id": "src/cli/commands/watch.js",
+      "type": "file",
+      "stale": false,
+      "last_indexed": "2026-03-03T15:30:22.989Z"
+    },
+    {
+      "id": "src/core/graph/index.js",
+      "type": "file",
+      "stale": false,
+      "last_indexed": "2026-03-03T15:30:22.989Z"
+    },
+    {
+      "id": "src/core/parser/types.js",
+      "type": "file",
+      "stale": false,
+      "last_indexed": "2026-03-03T15:30:22.989Z"
+    },
+    {
+      "id": "src/utils/hash.js",
+      "type": "file",
+      "stale": false,
+      "last_indexed": "2026-03-03T15:30:22.989Z"
+    },
+    {
+      "id": "src/core/parser/typescript.js",
+      "type": "file",
+      "stale": false,
+      "last_indexed": "2026-03-03T15:30:22.989Z"
+    },
+    {
+      "id": "src/core/parser/python.js",
+      "type": "file",
+      "stale": false,
+      "last_indexed": "2026-03-03T15:30:22.989Z"
+    },
+    {
+      "id": "src/core/parser/go.js",
+      "type": "file",
+      "stale": false,
+      "last_indexed": "2026-03-03T15:30:22.989Z"
+    },
+    {
+      "id": "src/core/summarizer/llm.js",
+      "type": "file",
+      "stale": false,
+      "last_indexed": "2026-03-03T15:30:22.989Z"
+    },
+    {
+      "id": "src/core/summarizer/cache.js",
+      "type": "file",
+      "stale": false,
+      "last_indexed": "2026-03-03T15:30:22.989Z"
+    },
+    {
+      "id": "src/core/watcher/invalidator.js",
+      "type": "file",
+      "stale": false,
+      "last_indexed": "2026-03-03T15:30:22.989Z"
+    }
+  ],
+  "edges": [
+    {
+      "source": "src/cli/commands/index.ts",
+      "target": "src/core/config/index.js",
+      "type": "imports",
+      "via": "import { loadConfig } from '../../core/config/index.js'"
+    },
+    {
+      "source": "src/cli/commands/index.ts",
+      "target": "src/core/parser/index.js",
+      "type": "imports",
+      "via": "import { parseFile } from '../../core/parser/index.js'"
+    },
+    {
+      "source": "src/cli/commands/index.ts",
+      "target": "src/core/graph/builder.js",
+      "type": "imports",
+      "via": "import { buildGraph } from '../../core/graph/builder.js'"
+    },
+    {
+      "source": "src/cli/commands/index.ts",
+      "target": "src/core/graph/serializer.js",
+      "type": "imports",
+      "via": "import { saveGraph, loadGraph } from '../../core/graph/serializer.js'"
+    },
+    {
+      "source": "src/cli/commands/index.ts",
+      "target": "src/core/summarizer/index.js",
+      "type": "imports",
+      "via": "import { summarizeGraph } from '../../core/summarizer/index.js'"
+    },
+    {
+      "source": "src/cli/commands/index.ts",
+      "target": "src/core/summarizer/markdown.js",
+      "type": "imports",
+      "via": "import { generateAllMarkdown } from '../../core/summarizer/markdown.js'"
+    },
+    {
+      "source": "src/cli/commands/index.ts",
+      "target": "src/utils/logger.js",
+      "type": "imports",
+      "via": "import { logger } from '../../utils/logger.js'"
+    },
+    {
+      "source": "src/cli/commands/index.ts",
+      "target": "src/utils/language.js",
+      "type": "imports",
+      "via": "import { isSupported } from '../../utils/language.js'"
+    },
+    {
+      "source": "src/cli/commands/init.ts",
+      "target": "src/core/config/index.js",
+      "type": "imports",
+      "via": "import { DEFAULT_CONFIG, saveConfig } from '../../core/config/index.js'"
+    },
+    {
+      "source": "src/cli/commands/init.ts",
+      "target": "src/utils/logger.js",
+      "type": "imports",
+      "via": "import { logger } from '../../utils/logger.js'"
+    },
+    {
+      "source": "src/cli/commands/query.ts",
+      "target": "src/core/config/index.js",
+      "type": "imports",
+      "via": "import { loadConfig } from '../../core/config/index.js'"
+    },
+    {
+      "source": "src/cli/commands/query.ts",
+      "target": "src/core/graph/serializer.js",
+      "type": "imports",
+      "via": "import { loadGraph } from '../../core/graph/serializer.js'"
+    },
+    {
+      "source": "src/cli/commands/query.ts",
+      "target": "src/core/graph/query.js",
+      "type": "imports",
+      "via": "import { queryNode, findUsages, computeImpact } from '../../core/graph/query.js'"
+    },
+    {
+      "source": "src/cli/commands/query.ts",
+      "target": "src/utils/logger.js",
+      "type": "imports",
+      "via": "import { logger } from '../../utils/logger.js'"
+    },
+    {
+      "source": "src/cli/commands/status.ts",
+      "target": "src/core/config/index.js",
+      "type": "imports",
+      "via": "import { loadConfig } from '../../core/config/index.js'"
+    },
+    {
+      "source": "src/cli/commands/status.ts",
+      "target": "src/core/graph/serializer.js",
+      "type": "imports",
+      "via": "import { loadGraph } from '../../core/graph/serializer.js'"
+    },
+    {
+      "source": "src/cli/commands/status.ts",
+      "target": "src/core/graph/query.js",
+      "type": "imports",
+      "via": "import { getOverview } from '../../core/graph/query.js'"
+    },
+    {
+      "source": "src/cli/commands/status.ts",
+      "target": "src/utils/logger.js",
+      "type": "imports",
+      "via": "import { logger } from '../../utils/logger.js'"
+    },
+    {
+      "source": "src/cli/commands/watch.ts",
+      "target": "src/core/config/index.js",
+      "type": "imports",
+      "via": "import { loadConfig } from '../../core/config/index.js'"
+    },
+    {
+      "source": "src/cli/commands/watch.ts",
+      "target": "src/core/graph/serializer.js",
+      "type": "imports",
+      "via": "import { loadGraph } from '../../core/graph/serializer.js'"
+    },
+    {
+      "source": "src/cli/commands/watch.ts",
+      "target": "src/core/watcher/index.js",
+      "type": "imports",
+      "via": "import { startWatcher } from '../../core/watcher/index.js'"
+    },
+    {
+      "source": "src/cli/commands/watch.ts",
+      "target": "src/utils/logger.js",
+      "type": "imports",
+      "via": "import { logger } from '../../utils/logger.js'"
+    },
+    {
+      "source": "src/cli/index.ts",
+      "target": "src/cli/commands/init.js",
+      "type": "imports",
+      "via": "import { runInit } from './commands/init.js'"
+    },
+    {
+      "source": "src/cli/index.ts",
+      "target": "src/cli/commands/index.js",
+      "type": "imports",
+      "via": "import { runIndex } from './commands/index.js'"
+    },
+    {
+      "source": "src/cli/index.ts",
+      "target": "src/cli/commands/query.js",
+      "type": "imports",
+      "via": "import { runQuery } from './commands/query.js'"
+    },
+    {
+      "source": "src/cli/index.ts",
+      "target": "src/cli/commands/status.js",
+      "type": "imports",
+      "via": "import { runStatus } from './commands/status.js'"
+    },
+    {
+      "source": "src/cli/index.ts",
+      "target": "src/cli/commands/watch.js",
+      "type": "imports",
+      "via": "import { runWatch } from './commands/watch.js'"
+    },
+    {
+      "source": "src/cli/index.ts",
+      "target": "src/utils/logger.js",
+      "type": "imports",
+      "via": "import { logger } from '../utils/logger.js'"
+    },
+    {
+      "source": "src/core/graph/builder.ts",
+      "target": "src/core/graph/index.js",
+      "type": "imports",
+      "via": "import { CodeGraph, type GraphNode } from './index.js'"
+    },
+    {
+      "source": "src/core/graph/builder.ts",
+      "target": "src/core/parser/types.js",
+      "type": "imports",
+      "via": "import { ParsedNode, ParsedEdge } from '../parser/types.js'"
+    },
+    {
+      "source": "src/core/graph/index.ts",
+      "target": "src/core/parser/types.js",
+      "type": "imports",
+      "via": "import { ParsedNode, ParsedEdge } from '../parser/types.js'"
+    },
+    {
+      "source": "src/core/graph/query.ts",
+      "target": "src/core/graph/index.js",
+      "type": "imports",
+      "via": "import { CodeGraph, type GraphNode } from './index.js'"
+    },
+    {
+      "source": "src/core/graph/serializer.ts",
+      "target": "src/core/graph/index.js",
+      "type": "imports",
+      "via": "import { CodeGraph, type GraphNode, type GraphEdge } from './index.js'"
+    },
+    {
+      "source": "src/core/parser/go.ts",
+      "target": "src/utils/hash.js",
+      "type": "imports",
+      "via": "import { sha256 } from '../../utils/hash.js'"
+    },
+    {
+      "source": "src/core/parser/go.ts",
+      "target": "src/core/parser/types.js",
+      "type": "imports",
+      "via": "import { ParsedNode, ParsedEdge, ParseResult } from './types.js'"
+    },
+    {
+      "source": "src/core/parser/index.ts",
+      "target": "src/utils/language.js",
+      "type": "imports",
+      "via": "import { detectLanguage } from '../../utils/language.js'"
+    },
+    {
+      "source": "src/core/parser/index.ts",
+      "target": "src/core/parser/typescript.js",
+      "type": "imports",
+      "via": "import { parseTypeScript } from './typescript.js'"
+    },
+    {
+      "source": "src/core/parser/index.ts",
+      "target": "src/core/parser/python.js",
+      "type": "imports",
+      "via": "import { parsePython } from './python.js'"
+    },
+    {
+      "source": "src/core/parser/index.ts",
+      "target": "src/core/parser/go.js",
+      "type": "imports",
+      "via": "import { parseGo } from './go.js'"
+    },
+    {
+      "source": "src/core/parser/index.ts",
+      "target": "src/core/parser/types.js",
+      "type": "imports",
+      "via": "import { ParseResult } from './types.js'"
+    },
+    {
+      "source": "src/core/parser/python.ts",
+      "target": "src/utils/hash.js",
+      "type": "imports",
+      "via": "import { sha256 } from '../../utils/hash.js'"
+    },
+    {
+      "source": "src/core/parser/python.ts",
+      "target": "src/core/parser/types.js",
+      "type": "imports",
+      "via": "import { ParsedNode, ParsedEdge, ParseResult } from './types.js'"
+    },
+    {
+      "source": "src/core/parser/types.ts",
+      "target": "src/utils/language.js",
+      "type": "imports",
+      "via": "import { SupportedLanguage } from '../../utils/language.js'"
+    },
+    {
+      "source": "src/core/parser/typescript.ts",
+      "target": "src/utils/hash.js",
+      "type": "imports",
+      "via": "import { sha256 } from '../../utils/hash.js'"
+    },
+    {
+      "source": "src/core/parser/typescript.ts",
+      "target": "src/utils/language.js",
+      "type": "imports",
+      "via": "import { SupportedLanguage } from '../../utils/language.js'"
+    },
+    {
+      "source": "src/core/parser/typescript.ts",
+      "target": "src/core/parser/types.js",
+      "type": "imports",
+      "via": "import { ParsedNode, ParsedEdge, ParseResult } from './types.js'"
+    },
+    {
+      "source": "src/core/summarizer/cache.ts",
+      "target": "src/core/summarizer/llm.js",
+      "type": "imports",
+      "via": "import { LLMSummaryResult } from './llm.js'"
+    },
+    {
+      "source": "src/core/summarizer/index.ts",
+      "target": "src/core/summarizer/llm.js",
+      "type": "imports",
+      "via": "import { generateSummary } from './llm.js'"
+    },
+    {
+      "source": "src/core/summarizer/index.ts",
+      "target": "src/core/summarizer/cache.js",
+      "type": "imports",
+      "via": "import {\n  loadSummaryCache,\n  saveSummaryCache,\n  getCached,\n  setCached,\n  type SummaryCache,\n} from './cache.js'"
+    },
+    {
+      "source": "src/core/summarizer/index.ts",
+      "target": "src/core/graph/index.js",
+      "type": "imports",
+      "via": "import { CodeGraph } from '../graph/index.js'"
+    },
+    {
+      "source": "src/core/summarizer/index.ts",
+      "target": "src/core/config/index.js",
+      "type": "imports",
+      "via": "import { CKConfig } from '../config/index.js'"
+    },
+    {
+      "source": "src/core/summarizer/llm.ts",
+      "target": "src/core/config/index.js",
+      "type": "imports",
+      "via": "import { CKConfig } from '../config/index.js'"
+    },
+    {
+      "source": "src/core/summarizer/markdown.ts",
+      "target": "src/core/graph/index.js",
+      "type": "imports",
+      "via": "import { CodeGraph, GraphNode } from '../graph/index.js'"
+    },
+    {
+      "source": "src/core/watcher/index.ts",
+      "target": "src/utils/language.js",
+      "type": "imports",
+      "via": "import { isSupported } from '../../utils/language.js'"
+    },
+    {
+      "source": "src/core/watcher/index.ts",
+      "target": "src/core/parser/index.js",
+      "type": "imports",
+      "via": "import { parseFile } from '../parser/index.js'"
+    },
+    {
+      "source": "src/core/watcher/index.ts",
+      "target": "src/core/graph/builder.js",
+      "type": "imports",
+      "via": "import { mergeIntoGraph } from '../graph/builder.js'"
+    },
+    {
+      "source": "src/core/watcher/index.ts",
+      "target": "src/core/graph/serializer.js",
+      "type": "imports",
+      "via": "import { saveGraph, loadGraph } from '../graph/serializer.js'"
+    },
+    {
+      "source": "src/core/watcher/index.ts",
+      "target": "src/core/summarizer/index.js",
+      "type": "imports",
+      "via": "import { summarizeGraph } from '../summarizer/index.js'"
+    },
+    {
+      "source": "src/core/watcher/index.ts",
+      "target": "src/core/summarizer/markdown.js",
+      "type": "imports",
+      "via": "import { generateAllMarkdown } from '../summarizer/markdown.js'"
+    },
+    {
+      "source": "src/core/watcher/index.ts",
+      "target": "src/core/watcher/invalidator.js",
+      "type": "imports",
+      "via": "import { invalidateIfChanged } from './invalidator.js'"
+    },
+    {
+      "source": "src/core/watcher/index.ts",
+      "target": "src/core/config/index.js",
+      "type": "imports",
+      "via": "import { CKConfig } from '../config/index.js'"
+    },
+    {
+      "source": "src/core/watcher/index.ts",
+      "target": "src/core/graph/index.js",
+      "type": "imports",
+      "via": "import { CodeGraph } from '../graph/index.js'"
+    },
+    {
+      "source": "src/core/watcher/invalidator.ts",
+      "target": "src/utils/hash.js",
+      "type": "imports",
+      "via": "import { sha256 } from '../../utils/hash.js'"
+    },
+    {
+      "source": "src/core/watcher/invalidator.ts",
+      "target": "src/core/graph/index.js",
+      "type": "imports",
+      "via": "import { CodeGraph } from '../graph/index.js'"
+    }
+  ]
+}

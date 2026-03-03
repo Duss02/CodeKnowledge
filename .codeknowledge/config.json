@@ -1,0 +1,37 @@
+{
+  "provider": "anthropic",
+  "model": "claude-haiku-4-5",
+  "include": [
+    "src/**",
+    "lib/**",
+    "**/*.ts",
+    "**/*.js",
+    "**/*.py",
+    "**/*.go"
+  ],
+  "exclude": [
+    "**/*.test.*",
+    "**/*.spec.*",
+    "**/node_modules/**",
+    "**/*.d.ts",
+    "**/dist/**",
+    "**/build/**",
+    "**/.git/**",
+    "**/.codeknowledge/**",
+    "**/coverage/**",
+    "**/__pycache__/**",
+    "**/*.min.js"
+  ],
+  "languages": [
+    "typescript",
+    "javascript",
+    "python",
+    "go"
+  ],
+  "maxFileSizeKB": 200,
+  "summaries": true,
+  "summaryMaxLines": 200,
+  "outputDir": ".codeknowledge",
+  "generateMarkdown": true,
+  "mcpPort": "stdio"
+}
