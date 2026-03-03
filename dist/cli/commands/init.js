@@ -43,7 +43,7 @@ module.exports = {
   apiKey: process.env.ANTHROPIC_API_KEY,
   openAIApiKey: process.env.OPENAI_API_KEY,
 
-  include: ["src/**", "lib/**"],
+  include: ["src/**", "lib/**", "**/*.ipynb"],
   exclude: [
     "**/*.test.*",
     "**/*.spec.*",
@@ -51,8 +51,9 @@ module.exports = {
     "**/*.d.ts",
     "**/dist/**",
     "**/build/**",
+    "**/.ipynb_checkpoints/**",
   ],
-  languages: ["typescript", "javascript", "python", "go"],
+  languages: ["typescript", "javascript", "python", "go", "notebook"],
   maxFileSizeKB: 200,
 
   summaries: true,

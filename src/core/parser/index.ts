@@ -3,6 +3,7 @@ import { detectLanguage } from "../../utils/language.js";
 import { parseTypeScript } from "./typescript.js";
 import { parsePython } from "./python.js";
 import { parseGo } from "./go.js";
+import { parseNotebook } from "./notebook.js";
 import type { ParseResult } from "./types.js";
 
 export * from "./types.js";
@@ -17,7 +18,7 @@ export async function parseFile(
   let content: string;
   try {
     content = await fs.readFile(filePath, "utf8");
-  } catch (err) {
+  } catch {
     return null;
   }
 
@@ -32,10 +33,12 @@ export async function parseFile(
         return parsePython(filePath, content, rootDir);
       case "go":
         return parseGo(filePath, content, rootDir);
+      case "notebook":
+        return parseNotebook(filePath, content, rootDir);
       default:
         return null;
     }
-  } catch (err) {
+  } catch {
     return null;
   }
 }

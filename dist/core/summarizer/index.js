@@ -5,9 +5,30 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.summarizeGraph = summarizeGraph;
 const promises_1 = __importDefault(require("fs/promises"));
+const path_1 = __importDefault(require("path"));
 const llm_js_1 = require("./llm.js");
 const cache_js_1 = require("./cache.js");
+const notebook_js_1 = require("../../utils/notebook.js");
 const index_js_1 = require("../config/index.js");
+/** Returns the content string to send to the LLM for a given file.
+ *  For notebooks, extracts code+markdown cells instead of sending raw JSON. */
+async function readContentForSummary(filePath) {
+    let raw;
+    try {
+        raw = await promises_1.default.readFile(filePath, "utf8");
+    }
+    catch {
+        return null;
+    }
+    if (path_1.default.extname(filePath).toLowerCase() === ".ipynb") {
+        const extract = (0, notebook_js_1.extractNotebook)(raw);
+        if (!extract || !extract.llmContent.trim())
+            return null;
+        // Use the LLM-friendly representation (markdown headings + code blocks)
+        return { code: extract.llmContent, language: "python" };
+    }
+    return { code: raw, language: path_1.default.extname(filePath).toLowerCase().replace(".", "") };
+}
 async function summarizeGraph(graph, rootDir, outputDir, config, logger, opts = {}) {
     if (!config.summaries) {
         logger.info("Summaries disabled, skipping LLM calls");
@@ -32,15 +53,6 @@ async function summarizeGraph(graph, rootDir, outputDir, config, logger, opts = 
     let completed = 0;
     async function processNode(node) {
         const filePath = `${rootDir}/${node.path}`;
-        let code;
-        try {
-            code = await promises_1.default.readFile(filePath, "utf8");
-        }
-        catch {
-            logger.warn({ path: node.path }, "Could not read file for summarization, skipping");
-            completed++;
-            return;
-        }
         const cached = (0, cache_js_1.getCached)(cache, node.id, node.hash);
         if (cached && !opts.force) {
             graph.updateNode(node.id, {
@@ -52,7 +64,14 @@ async function summarizeGraph(graph, rootDir, outputDir, config, logger, opts = 
             opts.onProgress?.(completed, filesToSummarize.length, node.id);
             return;
         }
-        const result = await (0, llm_js_1.generateSummary)(code, node.path, node.language ?? "python", config);
+        const content = await readContentForSummary(filePath);
+        if (!content) {
+            logger.warn({ path: node.path }, "Could not read file for summarization, skipping");
+            completed++;
+            return;
+        }
+        const effectiveLanguage = node.language === "notebook" ? "python (jupyter notebook)" : (node.language ?? "python");
+        const result = await (0, llm_js_1.generateSummary)(content.code, node.path, effectiveLanguage, config);
         if (result) {
             graph.updateNode(node.id, {
                 summary: result.summary,

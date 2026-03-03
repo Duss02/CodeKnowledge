@@ -1,4 +1,4 @@
-export type SupportedLanguage = "typescript" | "javascript" | "python" | "go";
+export type SupportedLanguage = "typescript" | "javascript" | "python" | "go" | "notebook";
 
 const EXT_MAP: Record<string, SupportedLanguage> = {
   ".ts": "typescript",
@@ -9,6 +9,7 @@ const EXT_MAP: Record<string, SupportedLanguage> = {
   ".cjs": "javascript",
   ".py": "python",
   ".go": "go",
+  ".ipynb": "notebook",
 };
 
 export function detectLanguage(filePath: string): SupportedLanguage | null {

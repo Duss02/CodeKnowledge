@@ -48,7 +48,7 @@ export const DEFAULT_CONFIG: CKConfig = {
   apiKey: process.env.ANTHROPIC_API_KEY,
   openAIApiKey: process.env.OPENAI_API_KEY,
 
-  include: ["src/**", "lib/**", "**/*.ts", "**/*.js", "**/*.py", "**/*.go"],
+  include: ["src/**", "lib/**", "**/*.ts", "**/*.js", "**/*.py", "**/*.go", "**/*.ipynb"],
   exclude: [
     "**/*.test.*",
     "**/*.spec.*",
@@ -61,8 +61,9 @@ export const DEFAULT_CONFIG: CKConfig = {
     "**/coverage/**",
     "**/__pycache__/**",
     "**/*.min.js",
+    "**/.ipynb_checkpoints/**",
   ],
-  languages: ["typescript", "javascript", "python", "go"],
+  languages: ["typescript", "javascript", "python", "go", "notebook"],
   maxFileSizeKB: 200,
 
   summaries: true,

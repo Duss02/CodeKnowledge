@@ -11,6 +11,7 @@ const EXT_MAP = {
     ".cjs": "javascript",
     ".py": "python",
     ".go": "go",
+    ".ipynb": "notebook",
 };
 function detectLanguage(filePath) {
     const ext = filePath.slice(filePath.lastIndexOf(".")).toLowerCase();

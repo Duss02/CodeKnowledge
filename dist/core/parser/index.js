@@ -23,6 +23,7 @@ const language_js_1 = require("../../utils/language.js");
 const typescript_js_1 = require("./typescript.js");
 const python_js_1 = require("./python.js");
 const go_js_1 = require("./go.js");
+const notebook_js_1 = require("./notebook.js");
 __exportStar(require("./types.js"), exports);
 async function parseFile(filePath, rootDir) {
     const language = (0, language_js_1.detectLanguage)(filePath);
@@ -32,7 +33,7 @@ async function parseFile(filePath, rootDir) {
     try {
         content = await promises_1.default.readFile(filePath, "utf8");
     }
-    catch (err) {
+    catch {
         return null;
     }
     if (!content.trim())
@@ -46,11 +47,13 @@ async function parseFile(filePath, rootDir) {
                 return (0, python_js_1.parsePython)(filePath, content, rootDir);
             case "go":
                 return (0, go_js_1.parseGo)(filePath, content, rootDir);
+            case "notebook":
+                return (0, notebook_js_1.parseNotebook)(filePath, content, rootDir);
             default:
                 return null;
         }
     }
-    catch (err) {
+    catch {
         return null;
     }
 }
