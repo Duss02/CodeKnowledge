@@ -15,6 +15,7 @@ const index_js_3 = require("../../core/summarizer/index.js");
 const markdown_js_1 = require("../../core/summarizer/markdown.js");
 const logger_js_1 = require("../../utils/logger.js");
 const language_js_1 = require("../../utils/language.js");
+const notebook_js_1 = require("../../utils/notebook.js");
 async function collectFiles(rootDir, include, exclude, maxFileSizeKB) {
     const allFiles = [];
     async function walk(dir) {
@@ -38,14 +39,31 @@ async function collectFiles(rootDir, include, exclude, maxFileSizeKB) {
             else if (entry.isFile()) {
                 if (!(0, language_js_1.isSupported)(fullPath))
                     continue;
-                // Check file size
-                try {
-                    const stat = await promises_1.default.stat(fullPath);
-                    if (stat.size > maxFileSizeKB * 1024)
+                // For notebooks, size-check against extracted code only (not raw JSON
+                // which is inflated by cell outputs, base64 images, logs, etc.)
+                if (fullPath.endsWith(".ipynb")) {
+                    try {
+                        const raw = await promises_1.default.readFile(fullPath, "utf8");
+                        const extract = (0, notebook_js_1.extractNotebook)(raw);
+                        if (!extract)
+                            continue;
+                        const codeSizeKB = Buffer.byteLength(extract.codeContent, "utf8") / 1024;
+                        if (codeSizeKB > maxFileSizeKB)
+                            continue;
+                    }
+                    catch {
                         continue;
+                    }
                 }
-                catch {
-                    continue;
+                else {
+                    try {
+                        const stat = await promises_1.default.stat(fullPath);
+                        if (stat.size > maxFileSizeKB * 1024)
+                            continue;
+                    }
+                    catch {
+                        continue;
+                    }
                 }
                 allFiles.push(fullPath);
             }

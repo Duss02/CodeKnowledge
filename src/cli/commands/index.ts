@@ -10,6 +10,7 @@ import { summarizeGraph } from "../../core/summarizer/index.js";
 import { generateAllMarkdown } from "../../core/summarizer/markdown.js";
 import { logger } from "../../utils/logger.js";
 import { isSupported } from "../../utils/language.js";
+import { extractNotebook } from "../../utils/notebook.js";
 import type { ParsedNode, ParsedEdge } from "../../core/parser/index.js";
 
 export interface IndexOptions {
@@ -47,12 +48,25 @@ async function collectFiles(
       } else if (entry.isFile()) {
         if (!isSupported(fullPath)) continue;
 
-        // Check file size
-        try {
-          const stat = await fs.stat(fullPath);
-          if (stat.size > maxFileSizeKB * 1024) continue;
-        } catch {
-          continue;
+        // For notebooks, size-check against extracted code only (not raw JSON
+        // which is inflated by cell outputs, base64 images, logs, etc.)
+        if (fullPath.endsWith(".ipynb")) {
+          try {
+            const raw = await fs.readFile(fullPath, "utf8");
+            const extract = extractNotebook(raw);
+            if (!extract) continue;
+            const codeSizeKB = Buffer.byteLength(extract.codeContent, "utf8") / 1024;
+            if (codeSizeKB > maxFileSizeKB) continue;
+          } catch {
+            continue;
+          }
+        } else {
+          try {
+            const stat = await fs.stat(fullPath);
+            if (stat.size > maxFileSizeKB * 1024) continue;
+          } catch {
+            continue;
+          }
         }
 
         allFiles.push(fullPath);

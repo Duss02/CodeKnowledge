@@ -5,6 +5,16 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CodeGraph = void 0;
 const graphology_1 = __importDefault(require("graphology"));
+const FILE_EXTENSIONS = new Set([".py", ".ts", ".tsx", ".js", ".jsx", ".mjs", ".cjs", ".go", ".ipynb"]);
+/** Returns true if the id looks like a real file path (has a known extension or path separator) */
+function isFileLikePath(id) {
+    if (id.includes("/") || id.includes("\\"))
+        return true;
+    const lastDot = id.lastIndexOf(".");
+    if (lastDot === -1)
+        return false;
+    return FILE_EXTENSIONS.has(id.slice(lastDot).toLowerCase());
+}
 class CodeGraph {
     graph;
     constructor() {
@@ -22,8 +32,17 @@ class CodeGraph {
         if (!this.graph.hasNode(edge.source)) {
             this.graph.addNode(edge.source, { id: edge.source, type: "file", stale: false, last_indexed: new Date().toISOString() });
         }
+        // Only auto-create a target node if it looks like an actual file path.
+        // Bare class/module names (e.g. "object", "Enum", "BaseRecommender") that
+        // appear as inheritance targets should NOT become ghost file nodes.
         if (!this.graph.hasNode(edge.target)) {
-            this.graph.addNode(edge.target, { id: edge.target, type: "file", stale: false, last_indexed: new Date().toISOString() });
+            if (isFileLikePath(edge.target)) {
+                this.graph.addNode(edge.target, { id: edge.target, type: "file", stale: false, last_indexed: new Date().toISOString() });
+            }
+            else {
+                // Dangling reference to a class/symbol that isn't in the graph — skip the edge
+                return;
+            }
         }
         const edgeKey = `${edge.source}→${edge.target}:${edge.type}`;
         if (!this.graph.hasEdge(edgeKey)) {
