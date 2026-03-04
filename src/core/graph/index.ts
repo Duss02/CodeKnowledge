@@ -203,6 +203,34 @@ export class CodeGraph {
     return this.nodes().filter((n) => n.stale);
   }
 
+  /** Returns edges originating from a node (outbound) */
+  edgesFrom(id: string): GraphEdge[] {
+    if (!this.graph.hasNode(id)) return [];
+    return this.graph.outEdges(id).map((key) => this.graph.getEdgeAttributes(key) as GraphEdge);
+  }
+
+  /** Returns edges pointing to a node (inbound) */
+  edgesTo(id: string): GraphEdge[] {
+    if (!this.graph.hasNode(id)) return [];
+    return this.graph.inEdges(id).map((key) => this.graph.getEdgeAttributes(key) as GraphEdge);
+  }
+
+  /** Compute in-degree centrality for all nodes, normalized to 0-1 */
+  computeCentrality(): Map<string, number> {
+    const centrality = new Map<string, number>();
+    let maxDegree = 1;
+    for (const id of this.graph.nodes()) {
+      const degree = this.graph.inDegree(id) + this.graph.outDegree(id);
+      centrality.set(id, degree);
+      if (degree > maxDegree) maxDegree = degree;
+    }
+    // Normalize
+    for (const [id, degree] of centrality) {
+      centrality.set(id, degree / maxDegree);
+    }
+    return centrality;
+  }
+
   getRawGraph(): DirectedGraph {
     return this.graph;
   }

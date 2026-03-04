@@ -26,7 +26,8 @@ CREATE TABLE IF NOT EXISTS nodes (
   summary      TEXT,
   tags         TEXT DEFAULT '[]',  -- JSON array of strings
   stale        INTEGER NOT NULL DEFAULT 0,  -- 0 = fresh, 1 = stale
-  last_indexed TEXT NOT NULL
+  last_indexed TEXT NOT NULL,
+  embedding    BLOB              -- neural embedding vector (Float32Array as buffer)
 );
 
 -- Edges table

@@ -36,6 +36,11 @@ export interface CKConfig {
   impactDepth: number;
 
   mcpPort: "stdio" | number;
+
+  /** Optional neural embedding provider (default: 'none' = TF-IDF only) */
+  embeddingProvider: "openai" | "none";
+  /** Embedding model name (default: 'text-embedding-3-small') */
+  embeddingModel: string;
 }
 
 /** Returns true if the config has a usable API key for the chosen provider */
@@ -97,6 +102,9 @@ export const DEFAULT_CONFIG: CKConfig = {
   impactDepth: 1,
 
   mcpPort: "stdio",
+
+  embeddingProvider: "none",
+  embeddingModel: "text-embedding-3-small",
 };
 
 export async function loadConfig(cwd: string = process.cwd()): Promise<CKConfig> {
