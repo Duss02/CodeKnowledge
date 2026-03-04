@@ -1,7 +1,7 @@
 import { cosmiconfig } from "cosmiconfig";
 import path from "path";
 
-export type LLMProvider = "anthropic" | "openai" | "gemini" | "custom";
+export type LLMProvider = "anthropic" | "openai" | "gemini" | "custom" | "openrouter";
 
 export interface CKConfig {
   provider: LLMProvider;
@@ -12,6 +12,8 @@ export interface CKConfig {
   openAIApiKey: string | undefined;
   /** Gemini API key — env: GEMINI_API_KEY */
   geminiApiKey: string | undefined;
+  /** OpenRouter API key — env: OPENROUTER_API_KEY */
+  openRouterApiKey: string | undefined;
   /** Custom OpenAI-compatible API key — env: CUSTOM_API_KEY */
   customApiKey: string | undefined;
   /** Custom API base URL — env: CUSTOM_BASE_URL */
@@ -40,6 +42,7 @@ export interface CKConfig {
 export function hasApiKey(config: CKConfig): boolean {
   if (config.provider === "openai") return !!config.openAIApiKey;
   if (config.provider === "gemini") return !!config.geminiApiKey;
+  if (config.provider === "openrouter") return !!config.openRouterApiKey;
   if (config.provider === "custom") return !!config.customApiKey;
   return !!config.apiKey;
 }
@@ -49,6 +52,7 @@ function detectProvider(): { provider: LLMProvider; model: string } {
   if (process.env.ANTHROPIC_API_KEY) return { provider: "anthropic", model: "claude-haiku-4-5" };
   if (process.env.OPENAI_API_KEY) return { provider: "openai", model: "gpt-4o-mini" };
   if (process.env.GEMINI_API_KEY) return { provider: "gemini", model: "gemini-2.5-flash" };
+  if (process.env.OPENROUTER_API_KEY) return { provider: "openrouter", model: process.env.OPENROUTER_MODEL || "meta-llama/llama-3.2-3b-instruct" };
   if (process.env.CUSTOM_API_KEY) return { provider: "custom", model: process.env.CUSTOM_MODEL || "llama-3.2-3b-instruct" };
   return { provider: "anthropic", model: "claude-haiku-4-5" };
 }
@@ -61,6 +65,7 @@ export const DEFAULT_CONFIG: CKConfig = {
   apiKey: process.env.ANTHROPIC_API_KEY,
   openAIApiKey: process.env.OPENAI_API_KEY,
   geminiApiKey: process.env.GEMINI_API_KEY,
+  openRouterApiKey: process.env.OPENROUTER_API_KEY,
   customApiKey: process.env.CUSTOM_API_KEY,
   customBaseUrl: process.env.CUSTOM_BASE_URL,
 
@@ -104,6 +109,7 @@ export async function loadConfig(cwd: string = process.cwd()): Promise<CKConfig>
     apiKey: process.env.ANTHROPIC_API_KEY,
     openAIApiKey: process.env.OPENAI_API_KEY,
     geminiApiKey: process.env.GEMINI_API_KEY,
+    openRouterApiKey: process.env.OPENROUTER_API_KEY,
     customApiKey: process.env.CUSTOM_API_KEY,
     customBaseUrl: process.env.CUSTOM_BASE_URL,
   };
@@ -113,6 +119,7 @@ export async function loadConfig(cwd: string = process.cwd()): Promise<CKConfig>
     if (!result.config.model) {
       if (merged.provider === "openai") merged.model = "gpt-4o-mini";
       else if (merged.provider === "gemini") merged.model = "gemini-2.5-flash";
+      else if (merged.provider === "openrouter") merged.model = process.env.OPENROUTER_MODEL || "meta-llama/llama-3.2-3b-instruct";
       else if (merged.provider === "custom") merged.model = process.env.CUSTOM_MODEL || "llama-3.2-3b-instruct";
       else merged.model = "claude-haiku-4-5";
     }

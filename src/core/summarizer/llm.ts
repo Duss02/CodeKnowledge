@@ -72,8 +72,16 @@ async function callOpenAI(
   userMessage: string,
   config: CKConfig
 ): Promise<string | null> {
-  const apiKey = config.provider === "custom" ? config.customApiKey : config.openAIApiKey;
-  const baseURL = config.provider === "custom" ? config.customBaseUrl : undefined;
+  let apiKey = config.openAIApiKey;
+  let baseURL: string | undefined;
+
+  if (config.provider === "custom") {
+    apiKey = config.customApiKey;
+    baseURL = config.customBaseUrl;
+  } else if (config.provider === "openrouter") {
+    apiKey = config.openRouterApiKey;
+    baseURL = "https://openrouter.ai/api/v1";
+  }
 
   if (!apiKey) return null;
 
@@ -119,7 +127,7 @@ export async function generateSummary(
   try {
     let text: string | null = null;
 
-    if (config.provider === "openai" || config.provider === "custom") {
+    if (config.provider === "openai" || config.provider === "custom" || config.provider === "openrouter") {
       text = await callOpenAI(userMessage, config);
     } else if (config.provider === "gemini") {
       text = await callGemini(userMessage, config);
@@ -143,9 +151,18 @@ export async function callLLM(
   if (!hasApiKey(config)) return null;
 
   try {
-    if (config.provider === "openai" || config.provider === "custom") {
-      const apiKey = config.provider === "custom" ? config.customApiKey : config.openAIApiKey;
-      const baseURL = config.provider === "custom" ? config.customBaseUrl : undefined;
+    if (config.provider === "openai" || config.provider === "custom" || config.provider === "openrouter") {
+      let apiKey = config.openAIApiKey;
+      let baseURL: string | undefined;
+
+      if (config.provider === "custom") {
+        apiKey = config.customApiKey;
+        baseURL = config.customBaseUrl;
+      } else if (config.provider === "openrouter") {
+        apiKey = config.openRouterApiKey;
+        baseURL = "https://openrouter.ai/api/v1";
+      }
+
       if (!apiKey) return null;
       const client = new OpenAI({ apiKey, baseURL });
       const response = await client.chat.completions.create({
