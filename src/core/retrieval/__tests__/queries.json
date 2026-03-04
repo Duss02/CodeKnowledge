@@ -197,6 +197,148 @@
         "category": "natural"
     },
     {
+        "query": "What validates user credentials?",
+        "repo": "self",
+        "expectedSymbols": [
+            "auth.ts",
+            "verifyJWT",
+            "login"
+        ],
+        "category": "natural"
+    },
+    {
+        "query": "Where are database queries executed?",
+        "repo": "self",
+        "expectedSymbols": [
+            "storage/index.ts",
+            "schema.ts",
+            "GraphStore"
+        ],
+        "category": "natural"
+    },
+    {
+        "query": "How does token counting work?",
+        "repo": "self",
+        "expectedSymbols": [
+            "retrieval/index.ts",
+            "estimateTokens",
+            "buildContext"
+        ],
+        "category": "natural"
+    },
+    {
+        "query": "What manages the file watcher?",
+        "repo": "self",
+        "expectedSymbols": [
+            "watcher/index.ts",
+            "watcher"
+        ],
+        "category": "natural"
+    },
+    {
+        "query": "How is Python code parsed?",
+        "repo": "self",
+        "expectedSymbols": [
+            "python.ts",
+            "parsePython"
+        ],
+        "category": "natural"
+    },
+    {
+        "query": "Where is Go source code analyzed?",
+        "repo": "self",
+        "expectedSymbols": [
+            "go.ts",
+            "parseGo"
+        ],
+        "category": "natural"
+    },
+    {
+        "query": "How are function boundaries detected?",
+        "repo": "self",
+        "expectedSymbols": [
+            "typescript.ts",
+            "python.ts",
+            "go.ts"
+        ],
+        "category": "natural"
+    },
+    {
+        "query": "What generates the CLI help text?",
+        "repo": "self",
+        "expectedSymbols": [
+            "cli/index.ts",
+            "commander"
+        ],
+        "category": "natural"
+    },
+    {
+        "query": "How does the priority queue rank nodes?",
+        "repo": "self",
+        "expectedSymbols": [
+            "priority-queue.ts",
+            "PriorityQueue"
+        ],
+        "category": "natural"
+    },
+    {
+        "query": "What computes similarity between vectors?",
+        "repo": "self",
+        "expectedSymbols": [
+            "embedding/index.ts",
+            "cosineSimilarity"
+        ],
+        "category": "natural"
+    },
+    {
+        "query": "How are class definitions extracted?",
+        "repo": "self",
+        "expectedSymbols": [
+            "typescript.ts",
+            "python.ts"
+        ],
+        "category": "natural"
+    },
+    {
+        "query": "Where is the LLM prompt constructed?",
+        "repo": "self",
+        "expectedSymbols": [
+            "llm.ts",
+            "SYSTEM_PROMPT",
+            "generateSummary"
+        ],
+        "category": "natural"
+    },
+    {
+        "query": "How does edge type affect search relevance?",
+        "repo": "self",
+        "expectedSymbols": [
+            "retrieval/index.ts",
+            "edgeWeight",
+            "EDGE_WEIGHTS"
+        ],
+        "category": "natural"
+    },
+    {
+        "query": "What determines if a node is stale?",
+        "repo": "self",
+        "expectedSymbols": [
+            "graph/index.ts",
+            "markStale",
+            "stale"
+        ],
+        "category": "natural"
+    },
+    {
+        "query": "How are import paths resolved to files?",
+        "repo": "self",
+        "expectedSymbols": [
+            "typescript.ts",
+            "resolveImportTarget"
+        ],
+        "category": "natural"
+    },
+    {
         "query": "What handles import resolution?",
         "repo": "self",
         "expectedSymbols": [
