@@ -21,8 +21,11 @@ export async function embedTexts(
     const batchSize = 100; // OpenAI max is 2048, but 100 keeps requests small
     const allVectors: Float32Array[] = [];
 
-    for (let i = 0; i < texts.length; i += batchSize) {
-        const batch = texts.slice(i, i + batchSize);
+    // Sanitize: replace empty/whitespace-only strings with a placeholder
+    const sanitized = texts.map((t) => (t.trim() || "empty"));
+
+    for (let i = 0; i < sanitized.length; i += batchSize) {
+        const batch = sanitized.slice(i, i + batchSize);
         const response = await client.embeddings.create({
             model: config.embeddingModel,
             input: batch,
