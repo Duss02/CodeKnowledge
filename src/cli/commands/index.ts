@@ -16,6 +16,8 @@ export interface IndexOptions {
   force?: boolean;
   noSummaries?: boolean;
   noMarkdown?: boolean;
+  impactDepth?: number;
+  workers?: number;
 }
 
 async function collectFiles(
@@ -88,6 +90,7 @@ export async function runIndex(
   const allEdges: ParsedEdge[] = [];
   let fileCount = 0;
   let errorCount = 0;
+  const allParseErrors: import("../../core/parser/index.js").ParseError[] = [];
 
   for (const rootDir of roots) {
     const files = await collectFiles(
@@ -101,8 +104,23 @@ export async function runIndex(
 
     for (const filePath of files) {
       try {
-        const result = await parseFile(filePath, rootDir);
-        if (!result) continue;
+        const result = await parseFile(filePath, rootDir, {
+          maxFileSizeKB: config.maxFileSizeKB,
+        });
+
+        // Collect any errors from parsing
+        if (result.errors.length > 0) {
+          allParseErrors.push(...result.errors);
+          for (const err of result.errors) {
+            logger.warn({ path: err.file, reason: err.reason }, err.message);
+          }
+        }
+
+        // Skip if no nodes were produced
+        if (result.nodes.length === 0) {
+          errorCount++;
+          continue;
+        }
 
         allNodes.push(...result.nodes);
         allEdges.push(...result.edges);
@@ -121,7 +139,7 @@ export async function runIndex(
     }
   }
 
-  logger.info(`Parsed ${fileCount} files (${errorCount} errors). Building graph...`);
+  logger.info(`Parsed ${fileCount} files (${errorCount} errors, ${allParseErrors.length} warnings). Building graph...`);
 
   const existingGraph = opts.force ? null : await loadGraph(outputDir);
   const graph = buildGraph(allNodes, allEdges, existingGraph ?? undefined);

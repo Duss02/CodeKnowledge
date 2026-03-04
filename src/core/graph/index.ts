@@ -8,7 +8,7 @@ export interface GraphNode extends ParsedNode {
   last_indexed: string;
 }
 
-export interface GraphEdge extends ParsedEdge {}
+export interface GraphEdge extends ParsedEdge { }
 
 export class CodeGraph {
   private graph: DirectedGraph;
@@ -161,14 +161,42 @@ export class CodeGraph {
     return this.nodes().filter((n) => this.graph.inDegree(n.id) === 0 && n.type === "file");
   }
 
-  /** Mark a node as stale, also stale all nodes that import it */
-  markStale(id: string): void {
+  /**
+   * Mark a node as stale and propagate staleness to importers up to `depth` hops.
+   * Uses BFS to traverse the import graph backwards, avoiding cycles.
+   * @param id - Node to mark as stale
+   * @param depth - How many hops to propagate (default: 1). Use 0 for no propagation.
+   * @returns Set of all node IDs that were marked stale
+   */
+  markStale(id: string, depth: number = 1): Set<string> {
+    const staleSet = new Set<string>();
+
     if (this.graph.hasNode(id)) {
       this.graph.mergeNodeAttributes(id, { stale: true });
+      staleSet.add(id);
     }
-    for (const pred of this.graph.inNeighbors(id)) {
-      this.graph.mergeNodeAttributes(pred, { stale: true });
+
+    if (depth <= 0) return staleSet;
+
+    // BFS: propagate through incoming edges (importers of this node)
+    let frontier = [id];
+    for (let hop = 0; hop < depth; hop++) {
+      const nextFrontier: string[] = [];
+      for (const nodeId of frontier) {
+        if (!this.graph.hasNode(nodeId)) continue;
+        for (const pred of this.graph.inNeighbors(nodeId)) {
+          if (!staleSet.has(pred)) {
+            this.graph.mergeNodeAttributes(pred, { stale: true });
+            staleSet.add(pred);
+            nextFrontier.push(pred);
+          }
+        }
+      }
+      frontier = nextFrontier;
+      if (frontier.length === 0) break; // no more nodes to propagate to
     }
+
+    return staleSet;
   }
 
   staleNodes(): GraphNode[] {

@@ -51,7 +51,7 @@ export function startWatcher(opts: WatchOptions): chokidar.FSWatcher {
 
     for (const filePath of toProcess) {
       const result = await parseFile(filePath, rootDir);
-      if (!result) continue;
+      if (result.nodes.length === 0) continue;
       newNodes.push(...result.nodes);
       newEdges.push(...result.edges);
       reindexed++;

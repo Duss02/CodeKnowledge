@@ -88,6 +88,14 @@ function handleTypeDecl(node: Parser.SyntaxNode, ctx: ParseContext): void {
     hash: sha256(node.text),
     exports: [],
   });
+
+  // file → struct/interface contains edge
+  ctx.edges.push({
+    source: ctx.fileId,
+    target: typeId,
+    type: "contains",
+    via: `contains type ${typeName}`,
+  });
 }
 
 function handleFunction(node: Parser.SyntaxNode, ctx: ParseContext): void {
@@ -109,6 +117,14 @@ function handleFunction(node: Parser.SyntaxNode, ctx: ParseContext): void {
     lines: [node.startPosition.row + 1, node.endPosition.row + 1],
     hash: sha256(node.text),
     exports: [],
+  });
+
+  // file → function contains edge
+  ctx.edges.push({
+    source: ctx.fileId,
+    target: fnId,
+    type: "contains",
+    via: `contains function ${fnName}`,
   });
 }
 
@@ -149,5 +165,5 @@ export function parseGo(
     exports: [...new Set(ctx.fileExports)],
   });
 
-  return { nodes: ctx.nodes, edges: ctx.edges };
+  return { nodes: ctx.nodes, edges: ctx.edges, errors: [] };
 }

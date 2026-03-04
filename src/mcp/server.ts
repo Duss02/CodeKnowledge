@@ -12,6 +12,7 @@ import { registerImpactTool } from "./tools/impact.js";
 import { registerEntryPointsTool } from "./tools/entry_points.js";
 import { registerOverviewTool } from "./tools/overview.js";
 import { registerQueryTool } from "./tools/query.js";
+import { registerSymbolTool } from "./tools/symbol.js";
 
 export async function startMcpServer(cwd: string = process.cwd()): Promise<void> {
   const config = await loadConfig(cwd);
@@ -57,6 +58,7 @@ export async function startMcpServer(cwd: string = process.cwd()): Promise<void>
   registerEntryPointsTool(server, getGraph);
   registerOverviewTool(server, getGraph);
   registerQueryTool(server, getGraph, config);
+  registerSymbolTool(server, getGraph);
 
   const transport = new StdioServerTransport();
   await server.connect(transport);

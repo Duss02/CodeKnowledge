@@ -1,0 +1,19 @@
+# dependencies
+node_modules/
+.env
+
+# build output
+dist/
+
+# auto-generated and logs
+.codeknowledge/
+docs/
+REQUIREMENTS.md
+*.log
+
+# testing fixtures
+test-fixtures/
+.vscode/
+
+# editor/OS
+.DS_Store

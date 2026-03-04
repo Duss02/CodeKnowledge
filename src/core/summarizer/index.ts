@@ -61,25 +61,25 @@ export async function summarizeGraph(
 
   const cache: SummaryCache = await loadSummaryCache(outputDir);
 
-  // Only summarize file-level nodes (classes/functions get their context from the file)
-  const filesToSummarize = graph
+  // Summarize file nodes, class nodes, and function nodes
+  const nodesToSummarize = graph
     .nodes()
-    .filter((n) => n.type === "file")
+    .filter((n) => n.type === "file" || n.type === "class" || n.type === "function")
     .filter((n) => opts.force || !getCached(cache, n.id, n.hash));
 
-  if (filesToSummarize.length === 0) {
+  if (nodesToSummarize.length === 0) {
     logger.info("All summaries up-to-date (cache hit)");
     return;
   }
 
   const batchSize = config.summaryBatchSize ?? 5;
   logger.info(
-    `Generating summaries for ${filesToSummarize.length} files (${batchSize} parallel)...`
+    `Generating summaries for ${nodesToSummarize.length} files (${batchSize} parallel)...`
   );
 
   let completed = 0;
 
-  async function processNode(node: (typeof filesToSummarize)[0]): Promise<void> {
+  async function processNode(node: (typeof nodesToSummarize)[0]): Promise<void> {
     const filePath = `${rootDir}/${node.path}`;
 
     const cached = getCached(cache, node.id, node.hash);
@@ -90,7 +90,7 @@ export async function summarizeGraph(
         exports: cached.exports.length > 0 ? cached.exports : node.exports,
       });
       completed++;
-      opts.onProgress?.(completed, filesToSummarize.length, node.id);
+      opts.onProgress?.(completed, nodesToSummarize.length, node.id);
       return;
     }
 
@@ -118,7 +118,7 @@ export async function summarizeGraph(
     }
 
     completed++;
-    opts.onProgress?.(completed, filesToSummarize.length, node.id);
+    opts.onProgress?.(completed, nodesToSummarize.length, node.id);
 
     // Save cache incrementally every 20 completions
     if (completed % 20 === 0) {
@@ -127,14 +127,14 @@ export async function summarizeGraph(
   }
 
   // Process in batches of batchSize (parallel within each batch)
-  for (let i = 0; i < filesToSummarize.length; i += batchSize) {
-    const batch = filesToSummarize.slice(i, i + batchSize);
+  for (let i = 0; i < nodesToSummarize.length; i += batchSize) {
+    const batch = nodesToSummarize.slice(i, i + batchSize);
     await Promise.all(batch.map(processNode));
 
-    const pct = Math.round((completed / filesToSummarize.length) * 100);
-    logger.info(`  [${completed}/${filesToSummarize.length}] ${pct}% complete`);
+    const pct = Math.round((completed / nodesToSummarize.length) * 100);
+    logger.info(`  [${completed}/${nodesToSummarize.length}] ${pct}% complete`);
   }
 
   await saveSummaryCache(cache, outputDir);
-  logger.info(`Summaries complete: ${completed}/${filesToSummarize.length} processed`);
+  logger.info(`Summaries complete: ${completed}/${nodesToSummarize.length} processed`);
 }

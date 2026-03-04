@@ -86,6 +86,16 @@ function visitNode(node: Parser.SyntaxNode, ctx: ParseContext, depth = 0): void 
       if (depth <= 2) handleVariableDecl(node, ctx);
       break;
     }
+    case "call_expression": {
+      // CommonJS: require('./module') or require('module')
+      handleRequireCall(node, ctx);
+      break;
+    }
+    case "expression_statement": {
+      // CommonJS: module.exports = X or exports.X = Y
+      handleCommonJSExport(node, ctx);
+      break;
+    }
   }
 
   for (const child of node.children) {
@@ -118,6 +128,98 @@ function handleImport(node: Parser.SyntaxNode, ctx: ParseContext): void {
     type: "imports",
     via,
   });
+}
+
+/**
+ * Handle CommonJS require() calls.
+ * Patterns:
+ *   const x = require('./module')
+ *   require('./module')
+ *   const { a, b } = require('./module')
+ */
+function handleRequireCall(node: Parser.SyntaxNode, ctx: ParseContext): void {
+  const fn = node.children[0];
+  if (!fn || fn.type !== "identifier" || fn.text !== "require") return;
+
+  const args = node.children.find((c) => c.type === "arguments");
+  if (!args) return;
+
+  const strArg = args.children.find((c) => c.type === "string" || c.type === "template_string");
+  if (!strArg) return;
+
+  const importPath = extractStringValue(strArg);
+  if (!importPath) return;
+
+  const target = resolveImportTarget(importPath, ctx.filePath, ctx.rootDir);
+  if (!target) return;
+
+  ctx.edges.push({
+    source: ctx.fileId,
+    target,
+    type: "imports",
+    via: `require('${importPath}')`,
+  });
+}
+
+/**
+ * Handle CommonJS module.exports / exports.X assignments.
+ * Patterns:
+ *   module.exports = value
+ *   module.exports = { a, b, c }
+ *   module.exports.foo = value
+ *   exports.foo = value
+ */
+function handleCommonJSExport(node: Parser.SyntaxNode, ctx: ParseContext): void {
+  const expr = node.children[0];
+  if (!expr || expr.type !== "assignment_expression") return;
+
+  const left = expr.children[0];
+  if (!left) return;
+
+  // module.exports = X
+  if (left.type === "member_expression") {
+    const obj = left.children[0];
+    const prop = left.children.find((c) => c.type === "property_identifier");
+    if (!obj || !prop) return;
+
+    // module.exports = value  or  module.exports = { a, b, c }
+    if (obj.type === "identifier" && obj.text === "module" && prop.text === "exports") {
+      const right = expr.children.find((c) => c.type === "object");
+      if (right) {
+        // module.exports = { a, b, c }
+        for (const child of right.children) {
+          if (child.type === "pair" || child.type === "shorthand_property_identifier" || child.type === "shorthand_property_identifier_pattern") {
+            const key = child.type === "pair"
+              ? child.children.find((c) => c.type === "property_identifier" || c.type === "identifier")
+              : child;
+            if (key) ctx.fileExports.push(key.text);
+          }
+        }
+      } else {
+        // module.exports = someValue (single export)
+        const right2 = expr.children[expr.children.length - 1];
+        if (right2 && right2.type === "identifier") {
+          ctx.fileExports.push(right2.text);
+        }
+      }
+      return;
+    }
+
+    // module.exports.foo = value
+    if (obj.type === "member_expression") {
+      const innerObj = obj.children[0];
+      const innerProp = obj.children.find((c) => c.type === "property_identifier");
+      if (innerObj?.text === "module" && innerProp?.text === "exports" && prop) {
+        ctx.fileExports.push(prop.text);
+      }
+      return;
+    }
+
+    // exports.foo = value
+    if (obj.type === "identifier" && obj.text === "exports" && prop) {
+      ctx.fileExports.push(prop.text);
+    }
+  }
 }
 
 function handleExport(node: Parser.SyntaxNode, ctx: ParseContext): void {
@@ -162,7 +264,7 @@ function handleClass(node: Parser.SyntaxNode, ctx: ParseContext): void {
   const startLine = node.startPosition.row + 1;
   const endLine = node.endPosition.row + 1;
 
-  // Collect methods
+  // Collect methods and emit class→method contains edges
   const methods: string[] = [];
   const body = node.children.find((c) => c.type === "class_body");
   if (body) {
@@ -171,6 +273,27 @@ function handleClass(node: Parser.SyntaxNode, ctx: ParseContext): void {
         const mName = member.children.find((c) => c.type === "property_identifier" || c.type === "identifier");
         if (mName && !["constructor", "get", "set"].includes(mName.text)) {
           methods.push(mName.text);
+
+          // Emit method node
+          const methodId = `${classId}.${mName.text}`;
+          ctx.nodes.push({
+            id: methodId,
+            type: "function",
+            language: ctx.language,
+            path: ctx.fileId,
+            name: mName.text,
+            lines: [member.startPosition.row + 1, member.endPosition.row + 1],
+            hash: sha256(member.text),
+            exports: [],
+          });
+
+          // class → method contains edge
+          ctx.edges.push({
+            source: classId,
+            target: methodId,
+            type: "contains",
+            via: `contains method ${mName.text}`,
+          });
         }
       }
     }
@@ -217,6 +340,14 @@ function handleClass(node: Parser.SyntaxNode, ctx: ParseContext): void {
     hash: sha256(node.text),
     exports: methods,
   });
+
+  // file → class contains edge
+  ctx.edges.push({
+    source: ctx.fileId,
+    target: classId,
+    type: "contains",
+    via: `contains class ${className}`,
+  });
 }
 
 function handleFunction(node: Parser.SyntaxNode, ctx: ParseContext): void {
@@ -238,6 +369,14 @@ function handleFunction(node: Parser.SyntaxNode, ctx: ParseContext): void {
     hash: sha256(node.text),
     exports: [],
   });
+
+  // file → function contains edge
+  ctx.edges.push({
+    source: ctx.fileId,
+    target: fnId,
+    type: "contains",
+    via: `contains function ${fnName}`,
+  });
 }
 
 function handleVariableDecl(node: Parser.SyntaxNode, ctx: ParseContext): void {
@@ -258,6 +397,14 @@ function handleVariableDecl(node: Parser.SyntaxNode, ctx: ParseContext): void {
         lines: [child.startPosition.row + 1, child.endPosition.row + 1],
         hash: sha256(child.text),
         exports: [],
+      });
+
+      // file → function contains edge
+      ctx.edges.push({
+        source: ctx.fileId,
+        target: fnId,
+        type: "contains",
+        via: `contains function ${nameNode.text}`,
       });
     }
   }
@@ -314,5 +461,6 @@ export function parseTypeScript(
   return {
     nodes: ctx.nodes,
     edges: ctx.edges,
+    errors: [],
   };
 }

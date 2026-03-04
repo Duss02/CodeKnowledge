@@ -6,6 +6,10 @@ import { runQuery } from "./commands/query.js";
 import { runStatus } from "./commands/status.js";
 import { runWatch } from "./commands/watch.js";
 import { startMcpServer } from "../mcp/server.js";
+import { runDoctor } from "./commands/doctor.js";
+import { runMetrics } from "./commands/metrics.js";
+import { runLanguages } from "./commands/languages.js";
+import { runExport } from "./commands/export.js";
 import { logger } from "../utils/logger.js";
 
 const program = new Command();
@@ -28,11 +32,15 @@ program
   .option("-f, --force", "Re-index all nodes even if unchanged")
   .option("--no-summaries", "Skip LLM summaries, graph only")
   .option("--no-markdown", "Skip SUMMARY.md generation")
+  .option("--impact-depth <n>", "Staleness propagation depth (default: config value)", parseInt)
+  .option("-w, --workers <n>", "Number of concurrent parse workers (default: auto)", parseInt)
   .action(async (paths: string[], opts) => {
     await runIndex(paths, {
       force: opts.force,
       noSummaries: !opts.summaries,
       noMarkdown: !opts.markdown,
+      impactDepth: opts.impactDepth,
+      workers: opts.workers,
     });
   });
 
@@ -63,6 +71,36 @@ program
   .description("Start the MCP server on stdio (for Cursor / Claude Code integration)")
   .action(async () => {
     await startMcpServer(process.cwd());
+  });
+
+program
+  .command("doctor")
+  .description("Health check for codeknowledge installation and graph")
+  .action(async () => {
+    await runDoctor();
+  });
+
+program
+  .command("metrics")
+  .description("Show graph statistics: nodes, edges, languages, summaries")
+  .action(async () => {
+    await runMetrics();
+  });
+
+program
+  .command("languages")
+  .alias("langs")
+  .description("Show supported languages and their parsers")
+  .action(() => {
+    runLanguages();
+  });
+
+program
+  .command("export")
+  .description("Export the knowledge graph as structured JSON")
+  .option("-o, --output <file>", "Write to file instead of stdout")
+  .action(async (opts) => {
+    await runExport({ output: opts.output });
   });
 
 // Suppress unhandled promise rejection noise in CLI
