@@ -1,0 +1,303 @@
+[
+    {
+        "query": "AuthService login",
+        "repo": "self",
+        "expectedSymbols": [
+            "auth.ts",
+            "AuthService",
+            "login"
+        ],
+        "category": "identifier"
+    },
+    {
+        "query": "parseTypeScript",
+        "repo": "self",
+        "expectedSymbols": [
+            "typescript.ts",
+            "parseTypeScript"
+        ],
+        "category": "identifier"
+    },
+    {
+        "query": "CodeGraph addNode",
+        "repo": "self",
+        "expectedSymbols": [
+            "graph/index.ts",
+            "CodeGraph",
+            "addNode"
+        ],
+        "category": "identifier"
+    },
+    {
+        "query": "loadConfig",
+        "repo": "self",
+        "expectedSymbols": [
+            "config/index.ts",
+            "loadConfig",
+            "CKConfig"
+        ],
+        "category": "identifier"
+    },
+    {
+        "query": "summarizeGraph",
+        "repo": "self",
+        "expectedSymbols": [
+            "summarizer/index.ts",
+            "summarizeGraph"
+        ],
+        "category": "identifier"
+    },
+    {
+        "query": "PriorityQueue push pop",
+        "repo": "self",
+        "expectedSymbols": [
+            "priority-queue.ts",
+            "PriorityQueue"
+        ],
+        "category": "identifier"
+    },
+    {
+        "query": "ANNIndex search",
+        "repo": "self",
+        "expectedSymbols": [
+            "embedding/index.ts",
+            "ANNIndex"
+        ],
+        "category": "identifier"
+    },
+    {
+        "query": "markStale",
+        "repo": "self",
+        "expectedSymbols": [
+            "graph/index.ts",
+            "markStale"
+        ],
+        "category": "identifier"
+    },
+    {
+        "query": "reciprocalRankFusion",
+        "repo": "self",
+        "expectedSymbols": [
+            "retrieval/index.ts",
+            "reciprocalRankFusion"
+        ],
+        "category": "identifier"
+    },
+    {
+        "query": "handleRequireCall",
+        "repo": "self",
+        "expectedSymbols": [
+            "typescript.ts",
+            "handleRequireCall"
+        ],
+        "category": "identifier"
+    },
+    {
+        "query": "Where is the graph stored?",
+        "repo": "self",
+        "expectedSymbols": [
+            "storage/index.ts",
+            "graph/index.ts",
+            "schema.ts",
+            "GraphStore"
+        ],
+        "category": "natural"
+    },
+    {
+        "query": "How does code parsing work?",
+        "repo": "self",
+        "expectedSymbols": [
+            "parser/index.ts",
+            "typescript.ts",
+            "python.ts",
+            "parseFile"
+        ],
+        "category": "natural"
+    },
+    {
+        "query": "How are summaries generated?",
+        "repo": "self",
+        "expectedSymbols": [
+            "summarizer/index.ts",
+            "llm.ts",
+            "generateSummary",
+            "summarizeGraph"
+        ],
+        "category": "natural"
+    },
+    {
+        "query": "How does the search pipeline work?",
+        "repo": "self",
+        "expectedSymbols": [
+            "retrieval/index.ts",
+            "hybridRetrieve",
+            "structuralSearch",
+            "semanticSearch"
+        ],
+        "category": "natural"
+    },
+    {
+        "query": "How are embeddings created?",
+        "repo": "self",
+        "expectedSymbols": [
+            "embedding/index.ts",
+            "embedDocuments",
+            "toVector",
+            "buildVocabulary"
+        ],
+        "category": "natural"
+    },
+    {
+        "query": "Where is configuration loaded?",
+        "repo": "self",
+        "expectedSymbols": [
+            "config/index.ts",
+            "loadConfig",
+            "CKConfig"
+        ],
+        "category": "natural"
+    },
+    {
+        "query": "How does staleness propagation work?",
+        "repo": "self",
+        "expectedSymbols": [
+            "graph/index.ts",
+            "markStale",
+            "staleNodes"
+        ],
+        "category": "natural"
+    },
+    {
+        "query": "How are files indexed in parallel?",
+        "repo": "self",
+        "expectedSymbols": [
+            "pool.ts",
+            "parseFilesParallel",
+            "ParserPool"
+        ],
+        "category": "natural"
+    },
+    {
+        "query": "How does the MCP server expose tools?",
+        "repo": "self",
+        "expectedSymbols": [
+            "mcp/server.ts",
+            "symbol.ts"
+        ],
+        "category": "natural"
+    },
+    {
+        "query": "How are CommonJS modules detected?",
+        "repo": "self",
+        "expectedSymbols": [
+            "typescript.ts",
+            "handleRequireCall",
+            "handleCommonJSExport"
+        ],
+        "category": "natural"
+    },
+    {
+        "query": "What handles import resolution?",
+        "repo": "self",
+        "expectedSymbols": [
+            "typescript.ts",
+            "parser/index.ts",
+            "resolveImportTarget"
+        ],
+        "category": "cross-cutting"
+    },
+    {
+        "query": "What triggers graph updates?",
+        "repo": "self",
+        "expectedSymbols": [
+            "graph/index.ts",
+            "watcher/index.ts",
+            "markStale",
+            "addNode"
+        ],
+        "category": "cross-cutting"
+    },
+    {
+        "query": "Error handling across parsers",
+        "repo": "self",
+        "expectedSymbols": [
+            "parser/index.ts",
+            "types.ts",
+            "ParseError"
+        ],
+        "category": "cross-cutting"
+    },
+    {
+        "query": "How do CLI commands interact with the graph?",
+        "repo": "self",
+        "expectedSymbols": [
+            "cli/index.ts",
+            "commands/index.ts",
+            "graph/index.ts"
+        ],
+        "category": "cross-cutting"
+    },
+    {
+        "query": "What connects parsing to storage?",
+        "repo": "self",
+        "expectedSymbols": [
+            "parser/index.ts",
+            "storage/index.ts",
+            "graph/index.ts"
+        ],
+        "category": "cross-cutting"
+    },
+    {
+        "query": "How does token budgeting affect retrieval?",
+        "repo": "self",
+        "expectedSymbols": [
+            "retrieval/index.ts",
+            "buildContext",
+            "estimateTokens"
+        ],
+        "category": "cross-cutting"
+    },
+    {
+        "query": "What provides LLM access?",
+        "repo": "self",
+        "expectedSymbols": [
+            "llm.ts",
+            "callLLM",
+            "generateSummary",
+            "config/index.ts"
+        ],
+        "category": "cross-cutting"
+    },
+    {
+        "query": "How are exports extracted from source code?",
+        "repo": "self",
+        "expectedSymbols": [
+            "typescript.ts",
+            "python.ts",
+            "handleExport",
+            "handleCommonJSExport"
+        ],
+        "category": "cross-cutting"
+    },
+    {
+        "query": "What serializes the graph to disk?",
+        "repo": "self",
+        "expectedSymbols": [
+            "serializer.ts",
+            "storage/index.ts",
+            "schema.ts"
+        ],
+        "category": "cross-cutting"
+    },
+    {
+        "query": "How does similarity search rank results?",
+        "repo": "self",
+        "expectedSymbols": [
+            "embedding/index.ts",
+            "retrieval/index.ts",
+            "cosineSimilarity",
+            "reciprocalRankFusion"
+        ],
+        "category": "cross-cutting"
+    }
+]

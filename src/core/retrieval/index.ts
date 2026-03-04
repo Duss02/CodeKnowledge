@@ -93,7 +93,7 @@ export function structuralSearch(
     // Build a small TF-IDF vocab from all node names+summaries for semantic overlap
     const allNodes = graph.nodes();
     const nodeTexts = allNodes.map((n) =>
-        tokenize([n.name, n.path, n.summary || "", (n.tags || []).join(" ")].join(" "))
+        tokenize([n.name || "", n.path || "", n.summary || "", (n.tags || []).join(" ")].join(" "))
     );
     const vocab = buildVocabulary([...nodeTexts, queryTokens]);
     const queryVec = toVector(queryTokens, vocab);
@@ -113,8 +113,8 @@ export function structuralSearch(
 
     // Phase 1: Direct name/path matches (seeds)
     for (const node of allNodes) {
-        const nameTokens = tokenize(node.name).map((t) => t.toLowerCase());
-        const pathTokens = tokenize(node.path).map((t) => t.toLowerCase());
+        const nameTokens = tokenize(node.name || "").map((t) => t.toLowerCase());
+        const pathTokens = tokenize(node.path || "").map((t) => t.toLowerCase());
         const allTokens = [...nameTokens, ...pathTokens];
 
         const matchCount = queryTokens.filter((qt) =>
