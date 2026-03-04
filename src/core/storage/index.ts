@@ -145,6 +145,49 @@ export class GraphStore {
         this.db.run(`UPDATE nodes SET stale = 0 WHERE id = ?`, [id]);
     }
 
+    // ──────────── Embedding Storage ────────────
+
+    /** Save a neural embedding vector for a node. */
+    saveEmbedding(nodeId: string, vector: Float32Array): void {
+        const buffer = Buffer.from(vector.buffer, vector.byteOffset, vector.byteLength);
+        this.db.run(`UPDATE nodes SET embedding = ? WHERE id = ?`, [buffer, nodeId]);
+    }
+
+    /** Save embeddings for multiple nodes in a single transaction. */
+    saveEmbeddings(embeddings: Map<string, Float32Array>): void {
+        this.db.run("BEGIN TRANSACTION");
+        try {
+            for (const [nodeId, vector] of embeddings) {
+                this.saveEmbedding(nodeId, vector);
+            }
+            this.db.run("COMMIT");
+        } catch (e) {
+            this.db.run("ROLLBACK");
+            throw e;
+        }
+    }
+
+    /** Load all stored embeddings as a Map<nodeId, Float32Array>. */
+    loadEmbeddings(): Map<string, Float32Array> {
+        const result = new Map<string, Float32Array>();
+        const rows = this.db.exec(`SELECT id, embedding FROM nodes WHERE embedding IS NOT NULL`);
+        if (rows.length > 0) {
+            for (const values of rows[0].values) {
+                const [id, blob] = values as [string, Uint8Array];
+                if (blob && blob.byteLength > 0) {
+                    result.set(id, new Float32Array(blob.buffer, blob.byteOffset, blob.byteLength / 4));
+                }
+            }
+        }
+        return result;
+    }
+
+    /** Check how many nodes have stored embeddings. */
+    embeddingCount(): number {
+        const rows = this.db.exec(`SELECT COUNT(*) FROM nodes WHERE embedding IS NOT NULL`);
+        return rows.length > 0 ? (rows[0].values[0][0] as number) : 0;
+    }
+
     // ──────────── Edge operations ────────────
 
     upsertEdge(edge: GraphEdge): void {
