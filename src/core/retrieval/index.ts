@@ -260,6 +260,49 @@ export function neuralSearch(
     return results.slice(0, k);
 }
 
+/**
+ * Semantic Query Expansion
+ *
+ * Uses dense embeddings to find semantic neighbors for a query,
+ * extracts their lexical identifiers (names, tags), and injects
+ * them back into the query.
+ *
+ * This bridges the vocabulary gap (e.g., "authentication" -> "verifyJWT")
+ * BEFORE candidate generation, giving the TF-IDF and BFS algorithms
+ * the correct vocabulary to search for.
+ */
+export function expandQuerySemantically(
+    originalQuery: string,
+    queryVec: Float32Array,
+    nodes: GraphNode[],
+    vectors: Map<string, Float32Array>,
+    k: number = 3
+): string {
+    // 1. Find top K semantic neighbors using dense embeddings
+    const neighbors = neuralSearch(queryVec, nodes, vectors, k);
+
+    if (neighbors.length === 0) {
+        return originalQuery; // No expansion possible
+    }
+
+    // 2. Extract pseudo-lexical terms from the neighbors
+    const expansionTerms = new Set<string>();
+    for (const res of neighbors) {
+        const node = nodes.find((n) => n.id === res.id);
+        if (node) {
+            // Inject the explicit name of the semantic match
+            if (node.name) expansionTerms.add(node.name);
+            // Optionally inject tags or exports if they are highly relevant
+            if (node.tags) node.tags.forEach((t) => expansionTerms.add(t));
+        }
+    }
+
+    // 3. Combine original query with the injected terms
+    // We append them to the query so structuralSearch/TF-IDF can tokenize them
+    const injected = Array.from(expansionTerms).join(" ");
+    return injected.length > 0 ? `${originalQuery} ${injected}` : originalQuery;
+}
+
 // ──────────── Reciprocal Rank Fusion ────────────
 
 export interface HybridResult {
