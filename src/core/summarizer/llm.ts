@@ -1,5 +1,6 @@
 import Anthropic from "@anthropic-ai/sdk";
 import OpenAI from "openai";
+import { GoogleGenAI } from "@google/genai";
 import type { CKConfig } from "../config/index.js";
 import { hasApiKey } from "../config/index.js";
 
@@ -71,7 +72,20 @@ async function callOpenAI(
   userMessage: string,
   config: CKConfig
 ): Promise<string | null> {
-  const client = new OpenAI({ apiKey: config.openAIApiKey });
+  let apiKey = config.openAIApiKey;
+  let baseURL: string | undefined;
+
+  if (config.provider === "custom") {
+    apiKey = config.customApiKey;
+    baseURL = config.customBaseUrl;
+  } else if (config.provider === "openrouter") {
+    apiKey = config.openRouterApiKey;
+    baseURL = "https://openrouter.ai/api/v1";
+  }
+
+  if (!apiKey) return null;
+
+  const client = new OpenAI({ apiKey, baseURL });
   const response = await client.chat.completions.create({
     model: config.model,
     max_tokens: 512,
@@ -81,6 +95,23 @@ async function callOpenAI(
     ],
   });
   return response.choices[0]?.message?.content ?? null;
+}
+
+async function callGemini(
+  userMessage: string,
+  config: CKConfig
+): Promise<string | null> {
+  if (!config.geminiApiKey) return null;
+  const ai = new GoogleGenAI({ apiKey: config.geminiApiKey });
+  const response = await ai.models.generateContent({
+    model: config.model,
+    contents: userMessage,
+    config: {
+      systemInstruction: SYSTEM_PROMPT,
+      maxOutputTokens: 512,
+    }
+  });
+  return response.text ?? null;
 }
 
 export async function generateSummary(
@@ -96,8 +127,10 @@ export async function generateSummary(
   try {
     let text: string | null = null;
 
-    if (config.provider === "openai") {
+    if (config.provider === "openai" || config.provider === "custom" || config.provider === "openrouter") {
       text = await callOpenAI(userMessage, config);
+    } else if (config.provider === "gemini") {
+      text = await callGemini(userMessage, config);
     } else {
       text = await callAnthropic(userMessage, config);
     }
@@ -118,14 +151,35 @@ export async function callLLM(
   if (!hasApiKey(config)) return null;
 
   try {
-    if (config.provider === "openai") {
-      const client = new OpenAI({ apiKey: config.openAIApiKey });
+    if (config.provider === "openai" || config.provider === "custom" || config.provider === "openrouter") {
+      let apiKey = config.openAIApiKey;
+      let baseURL: string | undefined;
+
+      if (config.provider === "custom") {
+        apiKey = config.customApiKey;
+        baseURL = config.customBaseUrl;
+      } else if (config.provider === "openrouter") {
+        apiKey = config.openRouterApiKey;
+        baseURL = "https://openrouter.ai/api/v1";
+      }
+
+      if (!apiKey) return null;
+      const client = new OpenAI({ apiKey, baseURL });
       const response = await client.chat.completions.create({
         model: config.model,
         max_tokens: maxTokens,
         messages: [{ role: "user", content: prompt }],
       });
       return response.choices[0]?.message?.content ?? null;
+    } else if (config.provider === "gemini") {
+      if (!config.geminiApiKey) return null;
+      const ai = new GoogleGenAI({ apiKey: config.geminiApiKey });
+      const response = await ai.models.generateContent({
+        model: config.model,
+        contents: prompt,
+        config: { maxOutputTokens: maxTokens }
+      });
+      return response.text ?? null;
     } else {
       const client = new Anthropic({ apiKey: config.apiKey });
       const message = await client.messages.create({

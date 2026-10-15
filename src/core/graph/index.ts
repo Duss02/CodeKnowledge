@@ -18,7 +18,7 @@ export interface GraphNode extends ParsedNode {
   last_indexed: string;
 }
 
-export interface GraphEdge extends ParsedEdge {}
+export interface GraphEdge extends ParsedEdge { }
 
 export class CodeGraph {
   private graph: DirectedGraph;
@@ -180,18 +180,74 @@ export class CodeGraph {
     return this.nodes().filter((n) => this.graph.inDegree(n.id) === 0 && n.type === "file");
   }
 
-  /** Mark a node as stale, also stale all nodes that import it */
-  markStale(id: string): void {
+  /**
+   * Mark a node as stale and propagate staleness to importers up to `depth` hops.
+   * Uses BFS to traverse the import graph backwards, avoiding cycles.
+   * @param id - Node to mark as stale
+   * @param depth - How many hops to propagate (default: 1). Use 0 for no propagation.
+   * @returns Set of all node IDs that were marked stale
+   */
+  markStale(id: string, depth: number = 1): Set<string> {
+    const staleSet = new Set<string>();
+
     if (this.graph.hasNode(id)) {
       this.graph.mergeNodeAttributes(id, { stale: true });
+      staleSet.add(id);
     }
-    for (const pred of this.graph.inNeighbors(id)) {
-      this.graph.mergeNodeAttributes(pred, { stale: true });
+
+    if (depth <= 0) return staleSet;
+
+    // BFS: propagate through incoming edges (importers of this node)
+    let frontier = [id];
+    for (let hop = 0; hop < depth; hop++) {
+      const nextFrontier: string[] = [];
+      for (const nodeId of frontier) {
+        if (!this.graph.hasNode(nodeId)) continue;
+        for (const pred of this.graph.inNeighbors(nodeId)) {
+          if (!staleSet.has(pred)) {
+            this.graph.mergeNodeAttributes(pred, { stale: true });
+            staleSet.add(pred);
+            nextFrontier.push(pred);
+          }
+        }
+      }
+      frontier = nextFrontier;
+      if (frontier.length === 0) break; // no more nodes to propagate to
     }
+
+    return staleSet;
   }
 
   staleNodes(): GraphNode[] {
     return this.nodes().filter((n) => n.stale);
+  }
+
+  /** Returns edges originating from a node (outbound) */
+  edgesFrom(id: string): GraphEdge[] {
+    if (!this.graph.hasNode(id)) return [];
+    return this.graph.outEdges(id).map((key) => this.graph.getEdgeAttributes(key) as GraphEdge);
+  }
+
+  /** Returns edges pointing to a node (inbound) */
+  edgesTo(id: string): GraphEdge[] {
+    if (!this.graph.hasNode(id)) return [];
+    return this.graph.inEdges(id).map((key) => this.graph.getEdgeAttributes(key) as GraphEdge);
+  }
+
+  /** Compute in-degree centrality for all nodes, normalized to 0-1 */
+  computeCentrality(): Map<string, number> {
+    const centrality = new Map<string, number>();
+    let maxDegree = 1;
+    for (const id of this.graph.nodes()) {
+      const degree = this.graph.inDegree(id) + this.graph.outDegree(id);
+      centrality.set(id, degree);
+      if (degree > maxDegree) maxDegree = degree;
+    }
+    // Normalize
+    for (const [id, degree] of centrality) {
+      centrality.set(id, degree / maxDegree);
+    }
+    return centrality;
   }
 
   getRawGraph(): DirectedGraph {

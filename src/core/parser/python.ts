@@ -138,14 +138,37 @@ function handleClass(node: Parser.SyntaxNode, ctx: ParseContext): void {
 
   ctx.fileExports.push(className);
 
-  // Methods from class body
+  // Methods from class body — emit method nodes + contains edges
   const methods: string[] = [];
   const body = node.children.find((c) => c.type === "block");
   if (body) {
     for (const member of body.children) {
       if (member.type === "function_definition") {
         const mName = member.children.find((c) => c.type === "identifier");
-        if (mName && mName.text !== "__init__") methods.push(mName.text);
+        if (mName && mName.text !== "__init__") {
+          methods.push(mName.text);
+
+          // Emit method node
+          const methodId = `${classId}.${mName.text}`;
+          ctx.nodes.push({
+            id: methodId,
+            type: "function",
+            language: "python",
+            path: ctx.fileId,
+            name: mName.text,
+            lines: [member.startPosition.row + 1, member.endPosition.row + 1],
+            hash: sha256(member.text),
+            exports: [],
+          });
+
+          // class → method contains edge
+          ctx.edges.push({
+            source: classId,
+            target: methodId,
+            type: "contains",
+            via: `contains method ${mName.text}`,
+          });
+        }
       }
     }
   }
@@ -175,6 +198,14 @@ function handleClass(node: Parser.SyntaxNode, ctx: ParseContext): void {
     hash: sha256(node.text),
     exports: methods,
   });
+
+  // file → class contains edge
+  ctx.edges.push({
+    source: ctx.fileId,
+    target: classId,
+    type: "contains",
+    via: `contains class ${className}`,
+  });
 }
 
 function handleFunction(node: Parser.SyntaxNode, ctx: ParseContext): void {
@@ -196,6 +227,14 @@ function handleFunction(node: Parser.SyntaxNode, ctx: ParseContext): void {
     lines: [node.startPosition.row + 1, node.endPosition.row + 1],
     hash: sha256(node.text),
     exports: [],
+  });
+
+  // file → function contains edge
+  ctx.edges.push({
+    source: ctx.fileId,
+    target: fnId,
+    type: "contains",
+    via: `contains function ${fnName}`,
   });
 }
 
@@ -236,5 +275,5 @@ export function parsePython(
     exports: [...new Set(ctx.fileExports)],
   });
 
-  return { nodes: ctx.nodes, edges: ctx.edges };
+  return { nodes: ctx.nodes, edges: ctx.edges, errors: [] };
 }

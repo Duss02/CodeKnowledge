@@ -33,7 +33,7 @@ export function parseNotebook(
 
   // If there's no usable code content, return just the file node
   if (!extract.codeContent.trim()) {
-    return { nodes: [fileNode], edges: [] };
+    return { nodes: [fileNode], edges: [], errors: [] };
   }
 
   // Run the Python parser on the concatenated code cells to extract
@@ -46,7 +46,7 @@ export function parseNotebook(
   }
 
   if (!pythonResult) {
-    return { nodes: [fileNode], edges: [] };
+    return { nodes: [fileNode], edges: [], errors: [] };
   }
 
   // Replace the Python parser's file node with our notebook file node
@@ -60,5 +60,6 @@ export function parseNotebook(
   return {
     nodes: [fileNode, ...otherNodes],
     edges: pythonResult.edges,
+    errors: [...(pythonResult.errors ?? [])],
   };
 }
